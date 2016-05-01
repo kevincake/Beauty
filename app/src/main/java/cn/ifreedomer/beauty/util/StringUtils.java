@@ -48,4 +48,10 @@ public class StringUtils {
         }
         return  "";
     }
+
+    public static boolean isPwdValid(String pwd){
+        if (TextUtils.isEmpty(pwd))return false;
+        if (pwd.length()<6)return false;
+        return true;
+    }
 }

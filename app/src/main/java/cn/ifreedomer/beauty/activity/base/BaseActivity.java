@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+import cn.ifreedomer.beauty.util.ToastUtil;
+
 public class BaseActivity extends AppCompatActivity {
 
     public Toolbar mActionBarToolbar;
@@ -18,7 +20,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        ActivityStackManager.getScreenManager().pushActivity(this);
+        ActivityStackManager.getScreenManager().pushActivity(this);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -85,7 +87,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        ActivityStackManager.getScreenManager().popActivity(this);
+        ActivityStackManager.getScreenManager().popActivity(this);
     }
 
     /**
@@ -101,5 +103,11 @@ public class BaseActivity extends AppCompatActivity {
     public static void exitApp() {
         finishAll();
 //		System.exit(0);
+    }
+    /**
+     *
+     */
+    public  void showErrorMsg(String errorMsg){
+        ToastUtil.showTextToast(this,errorMsg);
     }
 }

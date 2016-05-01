@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".BeautyApplication"
@@ -61,7 +61,11 @@
         <activity
             android:name=".activity.sign.SignUpActivity"
             android:theme="@style/NoActionBarStyle"/>
-        <activity android:name=".activity.sign.SignUpFullInfoActivity">
+        <activity
+            android:name=".activity.sign.SignUpFullInfoActivity"
+            android:theme="@style/NoActionBarStyle">
+        </activity>
+        <activity android:name=".activity.MainActivity">
         </activity>
     </application>
 

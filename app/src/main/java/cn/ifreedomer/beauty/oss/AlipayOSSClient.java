@@ -14,11 +14,15 @@ import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider;
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.GetObjectRequest;
+import com.alibaba.sdk.android.oss.model.OSSRequest;
+import com.alibaba.sdk.android.oss.model.OSSResult;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import cn.ifreedomer.beauty.BeautyApplication;
 import cn.ifreedomer.beauty.constants.Constants;
+import cn.ifreedomer.beauty.util.FrescoUtils;
 import cn.ifreedomer.beauty.util.LogUtil;
 
 /**
@@ -106,6 +110,22 @@ public class AlipayOSSClient {
             e.printStackTrace();
         }
         return url;
+    }
+
+
+    public  void uploadAndSetImageView(final String photoName, final String localPath, final SimpleDraweeView simpleDraweeView){
+        AlipayOSSClient.getInstance().uploadFileAsync(photoName, localPath, new OSSCompletedCallback() {
+            @Override
+            public void onSuccess(OSSRequest ossRequest, OSSResult ossResult) {
+                String url = AlipayOSSClient.getInstance().getUrl(photoName);
+                FrescoUtils.setImageUrl(url, simpleDraweeView);
+            }
+
+            @Override
+            public void onFailure(OSSRequest ossRequest, ClientException e, ServiceException e1) {
+
+            }
+        });
     }
 
 

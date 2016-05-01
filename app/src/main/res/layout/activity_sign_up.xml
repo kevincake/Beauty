@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.flipboard.bottomsheet.BottomSheetLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottomsheet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout
-                android:layout_width="match_parent"
-                android:clickable="true"
-                android:layout_height="match_parent"
-                android:background="@color/theme_color">
+    android:layout_height="match_parent"
+    android:background="@color/theme_color"
+    android:clickable="true">
     <!--<include layout="@layout/common_toolbar"/>-->
 
 
@@ -17,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@mipmap/sign_bg" />
+        android:src="@mipmap/sign_bg"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -43,7 +39,7 @@
                 android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 fresco:actualImageScaleType="fitCenter"
-                fresco:placeholderImage="@mipmap/default_avatar"
+                fresco:placeholderImage="@mipmap/icon"
                 fresco:placeholderImageScaleType="centerCrop"
                 fresco:roundAsCircle="true"
                 />
@@ -60,7 +56,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@color/gray_bg_color"
-                android:src="@mipmap/ic_menu" />
+                android:src="@mipmap/ic_menu"/>
 
             <EditText
                 android:id="@+id/phonenum_et"
@@ -71,7 +67,7 @@
                 android:gravity="center"
                 android:hint="@string/please_input_phonenum"
                 android:textColor="@color/text_color"
-                android:textColorHint="@color/gray_text_color" />
+                android:textColorHint="@color/gray_text_color"/>
         </LinearLayout>
 
         <LinearLayout
@@ -84,7 +80,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@color/white_gray_color"
-                android:src="@mipmap/ic_menu" />
+                android:src="@mipmap/ic_menu"/>
 
             <EditText
                 android:id="@+id/verifycode_et"
@@ -94,17 +90,18 @@
                 android:gravity="center"
                 android:hint="@string/please_input_verifycode"
                 android:textColor="@color/text_color"
-                android:textColorHint="@color/gray_text_color" />
+                android:textColorHint="@color/gray_text_color"/>
+
             <cn.ifreedomer.beauty.widget.TimeView
-                android:drawableLeft="@mipmap/shu_line"
-                android:gravity="center"
-                android:textColor="@color/text_color"
-                android:text="获取验证码"
-                android:background="@color/gray_bg_color"
+                android:id="@+id/getcode_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/getcode_tv"
-                android:textSize="15sp" />
+                android:background="@color/gray_bg_color"
+                android:drawableLeft="@mipmap/shu_line"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/text_color"
+                android:textSize="15sp"/>
         </LinearLayout>
 
         <Button
@@ -113,27 +110,27 @@
             android:layout_height="40dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/getcode_shape"
-            android:textColor="@color/text_color"
-            android:text="@string/register_title" />
+            android:text="@string/register_title"
+            android:textColor="@color/text_color"/>
+
         <TextView
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/text_color"
             android:layout_marginTop="20dp"
             android:text="@string/agree_ower_layer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/text_color"/>
     </LinearLayout>
 
     <TextView
-        android:text="@string/login_now"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/text_color"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
+        android:id="@+id/go_login_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/go_login_tv" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:text="@string/login_now"
+        android:textColor="@color/text_color"/>
 
 </RelativeLayout>
-</com.flipboard.bottomsheet.BottomSheetLayout>

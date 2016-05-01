@@ -51,6 +51,7 @@ dependencies {
     compile 'com.aliyun.dpa:oss-android-sdk:2.1.0'
     compile 'com.flipboard:bottomsheet-core:1.5.0'
     compile 'com.flipboard:bottomsheet-commons:1.5.0' // optional
+    compile 'com.github.orhanobut:hawk:1.23'
     compile files('libs/MobTools-2016.0303.1229.jar')
     compile files('libs/MobCommons-2016.0303.1229.jar')
 }

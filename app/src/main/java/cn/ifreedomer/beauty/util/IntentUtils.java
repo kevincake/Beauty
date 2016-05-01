@@ -8,11 +8,13 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
+import cn.ifreedomer.beauty.activity.MainActivity;
 import cn.ifreedomer.beauty.activity.sign.SignInActivity;
 import cn.ifreedomer.beauty.activity.sign.SignSelectActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpFullInfoActivity;
 import cn.ifreedomer.beauty.constants.ImageConstants;
+import cn.ifreedomer.beauty.constants.IntentConstants;
 
 /**
  * @author:eavawu
@@ -37,8 +39,9 @@ public class IntentUtils {
         context.startActivity(intent);
     }
 
-    public static void startSignUpFullInfoActivity(Activity context) {
+    public static void startSignUpFullInfoActivity(String phone ,Activity context) {
         Intent intent = new Intent(context, SignUpFullInfoActivity.class);
+        intent.putExtra(IntentConstants.PHONE,phone);
         context.startActivity(intent);
     }
 
@@ -73,4 +76,8 @@ public class IntentUtils {
     }
 
 
+    public static void startMainActivity(Activity context) {
+        Intent intent = new Intent(context,MainActivity.class);
+        context.startActivity(intent);
+    }
 }

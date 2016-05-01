@@ -1,10 +1,19 @@
 package cn.ifreedomer.beauty.network;
 
 
+import android.os.Handler;
+import android.os.Looper;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import cn.ifreedomer.beauty.activity.base.ActivityStackManager;
+import cn.ifreedomer.beauty.activity.base.BaseActivity;
+import cn.ifreedomer.beauty.constants.HttpConstants;
 import cn.ifreedomer.beauty.entity.HttpResult;
 import cn.ifreedomer.beauty.entity.IsPhoneRegister;
+import cn.ifreedomer.beauty.entity.User;
 import cn.ifreedomer.beauty.retrofitservice.SignService;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -45,23 +54,22 @@ public class HttpMethods {
     }
 
     //在访问HttpMethods时创建单例
-    private static class SingletonHolder{
+    private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
     }
 
     //获取单例
-    public static HttpMethods getInstance(){
+    public static HttpMethods getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     /**
      * 获取注册码
-     * @param subscriber  由调用者传过来的观察者对象
-     * @param contryCode 国家码
      *
+     * @param subscriber 由调用者传过来的观察者对象
+     * @param contryCode 国家码
      */
-    public void getIsPhoneRegister(Subscriber<IsPhoneRegister> subscriber, String contryCode){
-
+    public void getIsPhoneRegister(Subscriber<IsPhoneRegister> subscriber, String contryCode) {
 
 
         Observable observable = signService.getIsPhoneRegister(contryCode)
@@ -69,8 +77,35 @@ public class HttpMethods {
         toSubscribe(observable, subscriber);
     }
 
-    private <T> void toSubscribe(Observable<T> o, Subscriber<T> s){
-         o.subscribeOn(Schedulers.io())
+    /**
+     * @param subscriber
+     * @param nickName   名字
+     * @param avatar     头像
+     * @param sex        性别
+     * @param phone      手机号
+     */
+    public void postSignUp(Subscriber<User> subscriber, String nickName, String avatar, Integer sex, String phone, String password) {
+        Map<String, String> params = new LinkedHashMap<>();
+        params.put(HttpConstants.NAME, nickName);
+        params.put(HttpConstants.SEX, sex + "");
+        params.put(HttpConstants.PHONE, phone);
+        params.put(HttpConstants.AVATAR, avatar);
+        params.put(HttpConstants.PASSWORD, password);
+        Observable observable = signService.postSignUp(params)
+                .map(new HttpResultFunc<User>());
+        toSubscribe(observable, subscriber);
+    }
+
+
+    public void getSignIn(Subscriber<User> subscriber, String phone, String password) {
+        Observable observable = signService.getSignIn(phone, password)
+                .map(new HttpResultFunc<User>());
+        toSubscribe(observable, subscriber);
+    }
+
+
+    private <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
+        o.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s);
@@ -79,16 +114,27 @@ public class HttpMethods {
     /**
      * 用来统一处理Http的resultCode,并将HttpResult的Data部分剥离出来返回给subscriber
      *
-     * @param <T>   Subscriber真正需要的数据类型，也就是Data部分的数据类型
+     * @param <T> Subscriber真正需要的数据类型，也就是Data部分的数据类型
      */
-    private class HttpResultFunc<T> implements Func1<HttpResult<T>,T>{
+    private class HttpResultFunc<T> implements Func1<HttpResult<T>, T> {
 
         @Override
-        public T call(HttpResult<T> httpResult) {
+        public T call(final HttpResult<T> httpResult) {
             if (httpResult.getResultCode() == 0) {
-                throw new ApiException(100);
+                //在activity里面设置提示
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        BaseActivity baseActivity = (BaseActivity) ActivityStackManager.getScreenManager().currentActivity();
+                        baseActivity.showErrorMsg(httpResult.getMsg());
+                    }
+                });
+                return null;
+
+            } else {
+                return httpResult.getData();
             }
-            return httpResult.getData() ;
+
         }
     }
 
