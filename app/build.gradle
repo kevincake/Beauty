@@ -7,7 +7,7 @@ android {
     defaultConfig {
         ndk {
             //设置支持的SO库架构
-            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
         applicationId "cn.ifreedomer.beauty"
         minSdkVersion 15
@@ -22,6 +22,13 @@ android {
         }
     }
 }
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
+}
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -30,4 +37,20 @@ dependencies {
     //umeng
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'io.reactivex:rxjava:1.1.3'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.facebook.fresco:fresco:0.10.0'
+    compile name:'SMSSDK-2.0.2',ext:'aar'
+    compile name:'SMSSDKGUI-2.0.2',ext:'aar'
+    compile 'com.aliyun.dpa:oss-android-sdk:2.1.0'
+    compile 'com.flipboard:bottomsheet-core:1.5.0'
+    compile 'com.flipboard:bottomsheet-commons:1.5.0' // optional
+    compile files('libs/MobTools-2016.0303.1229.jar')
+    compile files('libs/MobCommons-2016.0303.1229.jar')
 }

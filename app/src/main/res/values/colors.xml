@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="theme_color">#ff000000</color>
+    <color name="text_color">#ffffffff</color>
+    <color name="gray_text_color">#ff929292</color>
+    <color name="gray_lignt_text_color">#ffffff</color>
+    <color name="btn_common_color">#ff51514a</color>
+    <color name="item_bg_color">#ff292922</color>
+    <color name="gray_bg_color">#99292922</color>
+    <color name="white_gray_color">#bb292922</color>
+    <color name="WHITE">#ffffffff</color>
+    <color name="toolbar_theme">#272727</color>
 </resources>

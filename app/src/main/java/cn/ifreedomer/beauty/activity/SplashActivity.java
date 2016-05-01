@@ -7,7 +7,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
-import cn.ifreedomer.beauty.util.IntentUtil;
+import cn.ifreedomer.beauty.util.IntentUtils;
 
 public class SplashActivity extends BaseActivity {
     public static final int SHOW_TIME = 3000;
@@ -18,7 +18,7 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                IntentUtil.startSignSelectActivity(SplashActivity.this);
+                IntentUtils.startSignSelectActivity(SplashActivity.this);
             }
         },SHOW_TIME);
     }
