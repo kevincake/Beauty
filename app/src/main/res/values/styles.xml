@@ -7,6 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="mainstyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
     <!-- 因为已经有toolBar 设置NoActionBar-->
     <style name="NoActionbarFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>

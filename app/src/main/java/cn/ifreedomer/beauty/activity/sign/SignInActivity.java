@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
-import cn.ifreedomer.beauty.entity.User;
+import cn.ifreedomer.beauty.entity.LogInResult;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.network.HttpMethods;
 import cn.ifreedomer.beauty.subscribers.ProgressSubscriber;
@@ -46,12 +46,15 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         Fresco.initialize(this);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
-        signInSubscriber = new SubscriberOnNextListener<User>() {
+        signInSubscriber = new SubscriberOnNextListener<LogInResult>() {
 
             @Override
-            public void onNext(User user) {
-                AppManager.getInstance().saveUser(user);
+            public void onNext(LogInResult logInResult) {
+                AppManager.getInstance().saveUser(logInResult.getUser());
+                AppManager.getInstance().setToken(logInResult.getToken());
+                AppManager.getInstance().setLogin(true);
                 IntentUtils.startMainActivity(SignInActivity.this);
+                SignInActivity.this.finish();
                 ToastUtil.showTextToast(SignInActivity.this, getString(R.string.login_success));
             }
         };
@@ -62,7 +65,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_btn:
-                if (StringUtils.isPhone(phonenumEt.getText().toString())) {
+                if (!StringUtils.isPhone(phonenumEt.getText().toString())) {
                     ToastUtil.showTextToast(this, getString(R.string.phone_format_error));
                     return;
                 }
@@ -70,9 +73,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                     ToastUtil.showTextToast(this, getString(R.string.pwd_notvalid));
                     return;
                 }
-                HttpMethods.getInstance().getSignIn(new ProgressSubscriber<User>(signInSubscriber, this), phonenumEt.getText().toString(), pwdEt.getText().toString());
+                HttpMethods.getInstance().getSignIn(new ProgressSubscriber<LogInResult>(signInSubscriber, this), phonenumEt.getText().toString(), pwdEt.getText().toString());
                 break;
             case R.id.goto_register_tv:
+                IntentUtils.startSignUpActivity(this);
+                this.finish();
                 break;
         }
     }

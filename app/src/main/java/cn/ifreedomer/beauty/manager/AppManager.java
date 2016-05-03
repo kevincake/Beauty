@@ -11,17 +11,38 @@ import cn.ifreedomer.beauty.entity.User;
 public class AppManager {
     private static AppManager instance = new AppManager();
     private static DataCacheManager dataCacheManager = DataCacheManager.getInstance();
+
+    private boolean isLogin;
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public static AppManager getInstance() {
         return instance;
     }
 
-    public void saveUser(User user){
-        dataCacheManager.put( HawkConstants.USER,user);
+    public boolean isLogin() {
+        return isLogin;
     }
 
-    public User getUser(){
-       return (User) dataCacheManager.get(HawkConstants.USER);
+    public void setLogin(boolean loginStatus) {
+        isLogin = loginStatus;
     }
+
+    public void saveUser(User user) {
+        dataCacheManager.put(HawkConstants.USER, user);
+    }
+
+    public User getUser() {
+        return (User) dataCacheManager.get(HawkConstants.USER);
+    }
+
 
 
 }

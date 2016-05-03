@@ -27,7 +27,7 @@ import cn.ifreedomer.beauty.callback.SimpleOnActivityForResultCallback;
 import cn.ifreedomer.beauty.constants.ActivityResultConstants;
 import cn.ifreedomer.beauty.constants.HttpConstants;
 import cn.ifreedomer.beauty.constants.IntentConstants;
-import cn.ifreedomer.beauty.entity.User;
+import cn.ifreedomer.beauty.entity.LogInResult;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.network.HttpMethods;
 import cn.ifreedomer.beauty.oss.AlipayOSSClient;
@@ -64,13 +64,15 @@ public class SignUpFullInfoActivity extends BaseActivity {
         setContentView(R.layout.activity_sign_up_full_info);
         ButterKnife.bind(this);
         phone = getIntent().getStringExtra(IntentConstants.PHONE);
-        signUpSubscriber = new SubscriberOnNextListener<User>() {
+        signUpSubscriber = new SubscriberOnNextListener<LogInResult>() {
 
             @Override
-            public void onNext(User user) {
-                AppManager.getInstance().saveUser(user);
+            public void onNext(LogInResult logInResult) {
+                AppManager.getInstance().saveUser(logInResult.getUser());
+                AppManager.getInstance().setToken(logInResult.getToken());
+                AppManager.getInstance().setLogin(true);
                 IntentUtils.startMainActivity(SignUpFullInfoActivity.this);
-                ToastUtil.showTextToast(SignUpFullInfoActivity.this,getString(R.string.register_success));
+                SignUpFullInfoActivity.this.finish();
             }
         };
     }
@@ -113,7 +115,7 @@ public class SignUpFullInfoActivity extends BaseActivity {
                     return;
                 }
                 int sex = fullinfoSexTv.getText().toString().equals(getString(R.string.man))? HttpConstants.MAN:HttpConstants.WOMEN;
-                HttpMethods.getInstance().postSignUp(new ProgressSubscriber<User>(signUpSubscriber, this),fullinfoUsernameEt.getText().toString(),avatarName,sex,phone,fullinfoPwdEt.getText().toString());
+                HttpMethods.getInstance().postSignUp(new ProgressSubscriber<LogInResult>(signUpSubscriber, this),fullinfoUsernameEt.getText().toString(),avatarName,sex,phone,fullinfoPwdEt.getText().toString());
                 break;
             case R.id.fullinfo_back2register_tv:
                 break;

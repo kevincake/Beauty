@@ -119,6 +119,8 @@ public class SignUpActivity extends BaseActivity {
                 SMSSDK.submitVerificationCode(getString(R.string.contry_code), phoneNumEt.getText().toString(), verifycodeEt.getText().toString());
                 break;
             case R.id.go_login_tv:
+                IntentUtils.startSignInActivity(this);
+                this.finish();
                 break;
             case R.id.profile_image:
 

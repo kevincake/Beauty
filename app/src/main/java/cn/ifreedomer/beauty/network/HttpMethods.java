@@ -4,6 +4,7 @@ package cn.ifreedomer.beauty.network;
 import android.os.Handler;
 import android.os.Looper;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -13,9 +14,13 @@ import cn.ifreedomer.beauty.activity.base.BaseActivity;
 import cn.ifreedomer.beauty.constants.HttpConstants;
 import cn.ifreedomer.beauty.entity.HttpResult;
 import cn.ifreedomer.beauty.entity.IsPhoneRegister;
-import cn.ifreedomer.beauty.entity.User;
+import cn.ifreedomer.beauty.entity.LogInResult;
+import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.retrofitservice.SignService;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,7 +35,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    public static final String BASE_URL = "http://192.168.1.107:8080/";
+    public static final String BASE_URL = "http://192.168.1.109:8080/";
 
     private static final int DEFAULT_TIMEOUT = 5;
 
@@ -42,11 +47,23 @@ public class HttpMethods {
         //手动创建一个OkHttpClient并设置超时时间
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        builder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                if (AppManager.getInstance().isLogin()){
+                    Request.Builder requstbuilder = request.newBuilder().addHeader(HttpConstants.TOKEN, AppManager.getInstance().getToken());
+                    requstbuilder.build();
+                }
 
+                return chain.proceed(request);
+            }
+        });
         retrofit = new Retrofit.Builder()
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+
                 .baseUrl(BASE_URL)
                 .build();
 
@@ -84,7 +101,7 @@ public class HttpMethods {
      * @param sex        性别
      * @param phone      手机号
      */
-    public void postSignUp(Subscriber<User> subscriber, String nickName, String avatar, Integer sex, String phone, String password) {
+    public void postSignUp(Subscriber<LogInResult> subscriber, String nickName, String avatar, Integer sex, String phone, String password) {
         Map<String, String> params = new LinkedHashMap<>();
         params.put(HttpConstants.NAME, nickName);
         params.put(HttpConstants.SEX, sex + "");
@@ -92,14 +109,14 @@ public class HttpMethods {
         params.put(HttpConstants.AVATAR, avatar);
         params.put(HttpConstants.PASSWORD, password);
         Observable observable = signService.postSignUp(params)
-                .map(new HttpResultFunc<User>());
+                .map(new HttpResultFunc<LogInResult>());
         toSubscribe(observable, subscriber);
     }
 
 
-    public void getSignIn(Subscriber<User> subscriber, String phone, String password) {
+    public void getSignIn(Subscriber<LogInResult> subscriber, String phone, String password) {
         Observable observable = signService.getSignIn(phone, password)
-                .map(new HttpResultFunc<User>());
+                .map(new HttpResultFunc<LogInResult>());
         toSubscribe(observable, subscriber);
     }
 
@@ -132,6 +149,7 @@ public class HttpMethods {
                 return null;
 
             } else {
+
                 return httpResult.getData();
             }
 

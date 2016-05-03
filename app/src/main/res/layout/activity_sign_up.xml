@@ -64,8 +64,9 @@
                 android:layout_height="50dp"
 
                 android:background="@color/white_gray_color"
-                android:gravity="center"
                 android:hint="@string/please_input_phonenum"
+                android:paddingLeft="20dp"
+                android:gravity="left|center_vertical"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/gray_text_color"/>
         </LinearLayout>
@@ -87,7 +88,8 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:background="@color/gray_bg_color"
-                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:gravity="left|center_vertical"
                 android:hint="@string/please_input_verifycode"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/gray_text_color"/>

@@ -65,7 +65,10 @@
             android:name=".activity.sign.SignUpFullInfoActivity"
             android:theme="@style/NoActionBarStyle">
         </activity>
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/mainstyle"
+            >
         </activity>
     </application>
 
