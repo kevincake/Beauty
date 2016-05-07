@@ -34,7 +34,7 @@
                 android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 fresco:actualImageScaleType="fitCenter"
-                fresco:placeholderImage="@mipmap/head_img_1"
+                fresco:placeholderImage="@mipmap/head_img_f"
                 fresco:placeholderImageScaleType="centerCrop"
                 fresco:roundAsCircle="true"
                 />

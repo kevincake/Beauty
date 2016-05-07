@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              xmlns:textcheckbox="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/item_bg_color"
               android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp">
+        android:layout_height="75dp"
+        android:background="@color/item_bg_color">
 
-        <include
-            layout="@layout/common_small_avatarlayout"/>
-
+        <com.facebook.drawee.view.SimpleDraweeView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fresco="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/user_circle_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@mipmap/splash"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:placeholderImage="@mipmap/icon"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,22 +55,64 @@
 
         </LinearLayout>
 
-        <ImageView
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_menu_more"/>
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp">
+
+            <cn.ifreedomer.beauty.widget.TextCheckBox
+                android:id="@+id/follow_cb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                textcheckbox:selector="@drawable/follow_cb"
+                textcheckbox:text="@string/follow"/>
+        </FrameLayout>
     </RelativeLayout>
-    <ImageView
-        android:id="@+id/lessonphoto_iv"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_centerInParent="true"
-        android:alpha="20"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/default_course_bg"/>
+        android:layout_height="240dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/course_bg_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="20"
+            android:layout_gravity="center"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:placeholderImage="@mipmap/default_course_bg"
+            fresco:placeholderImageScaleType="centerCrop"/>
+        <ImageView
+            android:src="@mipmap/play_big"
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+        <RelativeLayout
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/WHITE"
+                android:text="眼妆初级教程"
+                android:id="@+id/course_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/course_time_tv"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/WHITE"
+                android:text="Time:1:00:00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

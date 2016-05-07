@@ -12,6 +12,35 @@ public class Course {
     private String pic[];
     private Integer popular;
     private Long deployTime;
+    private Long courseTime;
+    private String courseDes;
+    private Long joinMan;
+
+    public Long getCourseTime() {
+        return courseTime;
+    }
+
+    public void setCourseTime(Long courseTime) {
+        this.courseTime = courseTime;
+    }
+
+    public String getCourseDes() {
+        return courseDes;
+    }
+
+    public void setCourseDes(String courseDes) {
+        this.courseDes = courseDes;
+    }
+
+    public Long getJoinMan() {
+        return joinMan;
+    }
+
+    public void setJoinMan(Long joinMan) {
+        this.joinMan = joinMan;
+    }
+
+
     public String getCourseName() {
         return courseName;
     }

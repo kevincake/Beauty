@@ -57,6 +57,7 @@ dependencies {
     compile 'com.flipboard:bottomsheet-commons:1.5.0'
     compile 'com.github.orhanobut:hawk:1.23'
     compile 'com.zhy:base-adapter:2.0.0'
+    compile 'co.lujun:androidtagview:1.0.3'
     compile 'com.android.support:support-v4:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.0.1'
 }

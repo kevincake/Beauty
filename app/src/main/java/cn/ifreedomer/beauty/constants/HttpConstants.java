@@ -18,4 +18,21 @@ public class HttpConstants {
 
     public static final String PASSWORD = "password";
     public static final String TOKEN = "token";
+    public static final int FOLLOWED = 1;
+    public static final int UNFOLLOWED = 0;
+
+
+    public static final String USERID_PATH = "/{userId}";
+    public static final String FOLLOW = "follow/";
+
+    public static final String FOLLOW_USER_PATH = FOLLOW+USERID_PATH;
+
+
+
+    public static final String SIGN = "sign/";
+    public static final String ISPHONE_REGISTER = HttpConstants.SIGN+"isPhoneRegister";
+    public static final String SIGN_IN = HttpConstants.SIGN+"signIn";
+    public static final String SIGN_UP = HttpConstants.SIGN+"signUp";
+
+    public static final String FOLLOW_STATUS_KEY = "followStatus";
 }

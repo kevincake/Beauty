@@ -20,14 +20,13 @@ import rx.Observable;
  */
 public interface SignService {
 
-    public static final String SIGN = "sign/";
-    @GET(SIGN+"isPhoneRegister")
+    @GET(HttpConstants.ISPHONE_REGISTER)
     Observable<HttpResult<IsPhoneRegister>> getIsPhoneRegister(@Query("phone")String phone);
 
-    @POST(SIGN+"signUp")
+    @POST(HttpConstants.SIGN_UP)
     Observable<HttpResult<LogInResult>> postSignUp(@QueryMap Map<String,String> userParams);
 
-    @GET(SIGN+"signIn")
+    @GET(HttpConstants.SIGN_IN)
     Observable<HttpResult<LogInResult>> getSignIn(@Query(HttpConstants.PHONE)String account, @Query(HttpConstants.PASSWORD)String password);
 
 

@@ -75,6 +75,8 @@
     <string name="avatar_not_null">头像不能为空哦~</string>
     <string name="register_success">注册成功</string>
     <string name="login_success">登陆成功</string>
+    <string name="follow">Follow</string>
+    <string name="course_time">时长:%s</string>
 </resources>
 
 

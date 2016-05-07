@@ -14,4 +14,5 @@ import rx.Observable;
 public interface CourseService {
     @GET("course")
     Observable<HttpResult<PoplarList>> getPopularCourseList(@Query("pageIndex")int pageIndex);
+
 }

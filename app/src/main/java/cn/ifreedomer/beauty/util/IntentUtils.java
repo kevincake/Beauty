@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
+import cn.ifreedomer.beauty.activity.CourseDetailInfoActivity;
 import cn.ifreedomer.beauty.activity.MainActivity;
 import cn.ifreedomer.beauty.activity.sign.SignInActivity;
 import cn.ifreedomer.beauty.activity.sign.SignSelectActivity;
@@ -79,5 +80,10 @@ public class IntentUtils {
     public static void startMainActivity(Activity context) {
         Intent intent = new Intent(context,MainActivity.class);
         context.startActivity(intent);
+    }
+
+    public static void startCourseDetailActivity(Activity ctx) {
+        Intent intent = new Intent(ctx, CourseDetailInfoActivity.class);
+        ctx.startActivity(intent);
     }
 }

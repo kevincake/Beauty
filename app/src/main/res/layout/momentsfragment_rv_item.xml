@@ -96,19 +96,13 @@
             android:src="@mipmap/button_comment"/>
     </LinearLayout>
 
-    <me.kaede.tagview.TagView
+    <co.lujun.androidtagview.TagContainerLayout
         android:id="@+id/tagview_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        app:lineMargin="5dp"
-        app:tagMargin="3dp"
-        app:textPaddingBottom="3dp"
-        app:textPaddingLeft="10dp"
-        app:textPaddingRight="10dp"
-        app:textPaddingTop="3dp"/>
+        android:layout_marginTop="5dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

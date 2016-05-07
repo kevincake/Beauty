@@ -18,6 +18,7 @@ import cn.ifreedomer.beauty.entity.LogInResult;
 import cn.ifreedomer.beauty.entity.PoplarList;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.retrofitservice.CourseService;
+import cn.ifreedomer.beauty.retrofitservice.FollowService;
 import cn.ifreedomer.beauty.retrofitservice.SignService;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -44,6 +45,7 @@ public class HttpMethods {
     private Retrofit retrofit;
     private SignService signService;
     private CourseService courseService;
+    private FollowService followService;
 
     //构造方法私有
     private HttpMethods() {
@@ -72,6 +74,11 @@ public class HttpMethods {
 
         signService = retrofit.create(SignService.class);
         courseService = retrofit.create(CourseService.class);
+        followService = retrofit.create(FollowService.class);
+    }
+
+    public void sendFollowReq(int followStatus, Long id) {
+
     }
 
     //在访问HttpMethods时创建单例
@@ -127,6 +134,13 @@ public class HttpMethods {
     public void getPopularCourseList(Subscriber<PoplarList> subscriber, int pageIndex) {
         Observable observable = courseService.getPopularCourseList(pageIndex)
                 .map(new HttpResultFunc<PoplarList>());
+        toSubscribe(observable, subscriber);
+    }
+
+    //==================FOLLOW===================
+    public void postFollowStatus(Subscriber subscriber,long userId,int followStatus){
+        Observable observable = followService.postFollowStatus(userId,followStatus)
+                .map(new HttpResultFunc());
         toSubscribe(observable, subscriber);
     }
 
