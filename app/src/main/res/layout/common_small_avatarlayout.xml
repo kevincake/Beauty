@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.facebook.drawee.view.SimpleDraweeView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/user_circle_iv"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_centerInParent="true"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="15dp"
+    android:src="@mipmap/splash"
+    fresco:actualImageScaleType="fitCenter"
+    fresco:placeholderImage="@mipmap/icon"
+    fresco:placeholderImageScaleType="centerCrop"
+    fresco:roundAsCircle="true"/>

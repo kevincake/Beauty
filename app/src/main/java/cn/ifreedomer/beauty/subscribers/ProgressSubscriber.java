@@ -57,7 +57,6 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-        Toast.makeText(context, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -84,10 +83,16 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
      * @param t 创建Subscriber时的泛型类型
      */
     @Override
-    public void onNext(T t) {
-        if (mSubscriberOnNextListener != null) {
-            mSubscriberOnNextListener.onNext(t);
-        }
+    public void onNext(final T t) {
+//        if (mSubscriberOnNextListener != null) {
+//            new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                @Override
+//                public void run() {
+                    mSubscriberOnNextListener.onNext(t);
+//                }
+//            });
+
+//        }
     }
 
     /**

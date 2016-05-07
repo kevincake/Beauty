@@ -4,10 +4,10 @@
              android:layout_height="match_parent"
              tools:context="cn.ifreedomer.beauty.fragment.CourseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/yellow"
+        android:id="@+id/recycleview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="这是courseFragment"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

@@ -73,13 +73,13 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
     private Drawable getIcon(int position) {
         switch (position) {
             case 0:
-                return res.getDrawable(R.mipmap.ic_menu);
+                return res.getDrawable(R.mipmap.tutourial_icon);
             case 1:
-                return res.getDrawable(R.mipmap.ic_earth);
+                return res.getDrawable(R.mipmap.group_icon);
             case 2:
-                return res.getDrawable(R.mipmap.ic_person_center);
+                return res.getDrawable(R.mipmap.share_icon);
             case 3:
-                return res.getDrawable(R.mipmap.ic_person_center);
+                return res.getDrawable(R.mipmap.personal_center_icon);
         }
         return null;
     }

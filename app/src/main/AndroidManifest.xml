@@ -56,18 +56,18 @@
         <!-- ==========bugly================ -->
         <activity
             android:name=".activity.sign.SignInActivity"
-            android:theme="@style/NoActionBarStyle">
+            android:theme="@style/StateBarStyle">
         </activity>
         <activity
             android:name=".activity.sign.SignUpActivity"
-            android:theme="@style/NoActionBarStyle"/>
+            android:theme="@style/StateBarStyle"/>
         <activity
             android:name=".activity.sign.SignUpFullInfoActivity"
             android:theme="@style/NoActionBarStyle">
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/mainstyle"
+            android:theme="@style/StateBarStyle"
             >
         </activity>
     </application>

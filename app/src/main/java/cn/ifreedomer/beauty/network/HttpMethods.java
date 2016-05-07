@@ -15,7 +15,9 @@ import cn.ifreedomer.beauty.constants.HttpConstants;
 import cn.ifreedomer.beauty.entity.HttpResult;
 import cn.ifreedomer.beauty.entity.IsPhoneRegister;
 import cn.ifreedomer.beauty.entity.LogInResult;
+import cn.ifreedomer.beauty.entity.PoplarList;
 import cn.ifreedomer.beauty.manager.AppManager;
+import cn.ifreedomer.beauty.retrofitservice.CourseService;
 import cn.ifreedomer.beauty.retrofitservice.SignService;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -35,12 +37,13 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    public static final String BASE_URL = "http://192.168.1.109:8080/";
+    public static final String BASE_URL = "http://192.168.1.111:8080/";
 
     private static final int DEFAULT_TIMEOUT = 5;
 
     private Retrofit retrofit;
     private SignService signService;
+    private CourseService courseService;
 
     //构造方法私有
     private HttpMethods() {
@@ -52,8 +55,8 @@ public class HttpMethods {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 if (AppManager.getInstance().isLogin()){
-                    Request.Builder requstbuilder = request.newBuilder().addHeader(HttpConstants.TOKEN, AppManager.getInstance().getToken());
-                    requstbuilder.build();
+                    Request.Builder requstbuilder = request.newBuilder().addHeader(HttpConstants.TOKEN, AppManager.getInstance().getUser().getId()+"_"+AppManager.getInstance().getToken());
+                    request = requstbuilder.build();
                 }
 
                 return chain.proceed(request);
@@ -68,6 +71,7 @@ public class HttpMethods {
                 .build();
 
         signService = retrofit.create(SignService.class);
+        courseService = retrofit.create(CourseService.class);
     }
 
     //在访问HttpMethods时创建单例
@@ -117,6 +121,12 @@ public class HttpMethods {
     public void getSignIn(Subscriber<LogInResult> subscriber, String phone, String password) {
         Observable observable = signService.getSignIn(phone, password)
                 .map(new HttpResultFunc<LogInResult>());
+        toSubscribe(observable, subscriber);
+    }
+
+    public void getPopularCourseList(Subscriber<PoplarList> subscriber, int pageIndex) {
+        Observable observable = courseService.getPopularCourseList(pageIndex)
+                .map(new HttpResultFunc<PoplarList>());
         toSubscribe(observable, subscriber);
     }
 

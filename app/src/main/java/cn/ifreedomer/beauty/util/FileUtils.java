@@ -46,7 +46,7 @@ public class FileUtils {
     }
 
     public static String getGeneratePhotoName() {
-        return GenerateUtil.getGenerateName() + ".jpg";
+        return  GenerateUtil.getGenerateName() + ".jpg";
     }
 
     public static String getGenerateVideoName() {
