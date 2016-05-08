@@ -12,10 +12,11 @@ import java.util.concurrent.TimeUnit;
 import cn.ifreedomer.beauty.activity.base.ActivityStackManager;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
 import cn.ifreedomer.beauty.constants.HttpConstants;
-import cn.ifreedomer.beauty.entity.HttpResult;
-import cn.ifreedomer.beauty.entity.IsPhoneRegister;
-import cn.ifreedomer.beauty.entity.LogInResult;
-import cn.ifreedomer.beauty.entity.PoplarList;
+import cn.ifreedomer.beauty.entity.jsonbean.CourseItems;
+import cn.ifreedomer.beauty.entity.jsonbean.HttpResult;
+import cn.ifreedomer.beauty.entity.jsonbean.IsPhoneRegister;
+import cn.ifreedomer.beauty.entity.jsonbean.LogInResult;
+import cn.ifreedomer.beauty.entity.jsonbean.PoplarList;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.retrofitservice.CourseService;
 import cn.ifreedomer.beauty.retrofitservice.FollowService;
@@ -56,8 +57,8 @@ public class HttpMethods {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                if (AppManager.getInstance().isLogin()){
-                    Request.Builder requstbuilder = request.newBuilder().addHeader(HttpConstants.TOKEN, AppManager.getInstance().getUser().getId()+"_"+AppManager.getInstance().getToken());
+                if (AppManager.getInstance().isLogin()) {
+                    Request.Builder requstbuilder = request.newBuilder().addHeader(HttpConstants.TOKEN, AppManager.getInstance().getUser().getId() + "_" + AppManager.getInstance().getToken());
                     request = requstbuilder.build();
                 }
 
@@ -131,6 +132,13 @@ public class HttpMethods {
         toSubscribe(observable, subscriber);
     }
 
+    //==================Course=====================
+    public void getCourseItems(Subscriber<CourseItems> subscriber, long courseId) {
+        Observable observable = courseService.getCourseItems(courseId)
+                .map(new HttpResultFunc<CourseItems>());
+        toSubscribe(observable, subscriber);
+    }
+
     public void getPopularCourseList(Subscriber<PoplarList> subscriber, int pageIndex) {
         Observable observable = courseService.getPopularCourseList(pageIndex)
                 .map(new HttpResultFunc<PoplarList>());
@@ -138,8 +146,8 @@ public class HttpMethods {
     }
 
     //==================FOLLOW===================
-    public void postFollowStatus(Subscriber subscriber,long userId,int followStatus){
-        Observable observable = followService.postFollowStatus(userId,followStatus)
+    public void postFollowStatus(Subscriber subscriber, long userId, int followStatus) {
+        Observable observable = followService.postFollowStatus(userId, followStatus)
                 .map(new HttpResultFunc());
         toSubscribe(observable, subscriber);
     }

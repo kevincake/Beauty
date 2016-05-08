@@ -10,13 +10,14 @@ import java.io.File;
 
 import cn.ifreedomer.beauty.activity.CourseDetailInfoActivity;
 import cn.ifreedomer.beauty.activity.MainActivity;
+import cn.ifreedomer.beauty.activity.VideoPlayerActivity;
 import cn.ifreedomer.beauty.activity.sign.SignInActivity;
 import cn.ifreedomer.beauty.activity.sign.SignSelectActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpFullInfoActivity;
 import cn.ifreedomer.beauty.constants.ImageConstants;
 import cn.ifreedomer.beauty.constants.IntentConstants;
-import cn.ifreedomer.beauty.entity.PopularCourseBean;
+import cn.ifreedomer.beauty.entity.jsonbean.PopularCourseBean;
 
 /**
  * @author:eavawu
@@ -86,6 +87,12 @@ public class IntentUtils {
     public static void startCourseDetailActivity(Activity ctx, PopularCourseBean popularCourseBean) {
         Intent intent = new Intent(ctx, CourseDetailInfoActivity.class);
         intent.putExtra(IntentConstants.POPCOURSE_BEAN,popularCourseBean);
+        ctx.startActivity(intent);
+    }
+
+    public static void startVideoPlayerActivity(Activity ctx, String url) {
+        Intent intent = new Intent(ctx, VideoPlayerActivity.class);
+        intent.putExtra(IntentConstants.VIDEO_URL,url);
         ctx.startActivity(intent);
     }
 }

@@ -27,7 +27,7 @@ import cn.ifreedomer.beauty.callback.SimpleOnActivityForResultCallback;
 import cn.ifreedomer.beauty.constants.ActivityResultConstants;
 import cn.ifreedomer.beauty.constants.HttpConstants;
 import cn.ifreedomer.beauty.constants.IntentConstants;
-import cn.ifreedomer.beauty.entity.LogInResult;
+import cn.ifreedomer.beauty.entity.jsonbean.LogInResult;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.network.HttpMethods;
 import cn.ifreedomer.beauty.oss.AlipayOSSClient;

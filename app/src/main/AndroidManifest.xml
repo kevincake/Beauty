@@ -71,6 +71,11 @@
         </activity>
         <activity android:name=".activity.CourseDetailInfoActivity">
         </activity>
+        <activity
+            android:theme="@style/NoActionbarFullScreen"
+            android:screenOrientation="landscape"
+            android:name=".activity.VideoPlayerActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -3,9 +3,9 @@ package cn.ifreedomer.beauty.retrofitservice;
 import java.util.Map;
 
 import cn.ifreedomer.beauty.constants.HttpConstants;
-import cn.ifreedomer.beauty.entity.HttpResult;
-import cn.ifreedomer.beauty.entity.IsPhoneRegister;
-import cn.ifreedomer.beauty.entity.LogInResult;
+import cn.ifreedomer.beauty.entity.jsonbean.HttpResult;
+import cn.ifreedomer.beauty.entity.jsonbean.IsPhoneRegister;
+import cn.ifreedomer.beauty.entity.jsonbean.LogInResult;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;

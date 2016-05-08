@@ -14,4 +14,5 @@ public class Constants {
     public static final String OSS_SECRET = "2xTFsD3y9sOCuleI8OESJamkNmskRS";
     public static final String OSS_ENDPOINT = "http://oss-cn-shenzhen.aliyuncs.com";
     public static final String OSS_BUCKETNAME = "beautybucket";
+    public static final String VIDEO_URL = "video_url";
 }

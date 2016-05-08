@@ -1,7 +1,7 @@
 package cn.ifreedomer.beauty.retrofitservice;
 
 import cn.ifreedomer.beauty.constants.HttpConstants;
-import cn.ifreedomer.beauty.entity.HttpResult;
+import cn.ifreedomer.beauty.entity.jsonbean.HttpResult;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

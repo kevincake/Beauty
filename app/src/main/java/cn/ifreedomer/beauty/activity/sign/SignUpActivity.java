@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
-import cn.ifreedomer.beauty.entity.IsPhoneRegister;
+import cn.ifreedomer.beauty.entity.jsonbean.IsPhoneRegister;
 import cn.ifreedomer.beauty.network.HttpMethods;
 import cn.ifreedomer.beauty.subscribers.ProgressSubscriber;
 import cn.ifreedomer.beauty.subscribers.SubscriberOnNextListener;

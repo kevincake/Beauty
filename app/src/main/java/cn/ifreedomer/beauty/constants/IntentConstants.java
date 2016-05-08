@@ -8,4 +8,5 @@ package cn.ifreedomer.beauty.constants;
 public class IntentConstants {
     public static final String PHONE = "phone";
     public static final String POPCOURSE_BEAN = "popular_course";
+    public static final String VIDEO_URL = "video_url";
 }

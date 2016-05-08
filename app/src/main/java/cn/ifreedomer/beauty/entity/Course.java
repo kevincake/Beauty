@@ -16,7 +16,17 @@ public class Course implements Serializable{
     private Long deployTime;
     private Long courseTime;
     private String courseDes;
-    private Long joinMan;
+    private int joinMan;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private long id;
 
     public Long getCourseTime() {
         return courseTime;
@@ -34,11 +44,11 @@ public class Course implements Serializable{
         this.courseDes = courseDes;
     }
 
-    public Long getJoinMan() {
-        return joinMan;
+    public int  getJoinMan() {
+        return  joinMan;
     }
 
-    public void setJoinMan(Long joinMan) {
+    public void setJoinMan(int joinMan) {
         this.joinMan = joinMan;
     }
 

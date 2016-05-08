@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
-import cn.ifreedomer.beauty.entity.LogInResult;
+import cn.ifreedomer.beauty.entity.jsonbean.LogInResult;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.network.HttpMethods;
 import cn.ifreedomer.beauty.subscribers.ProgressSubscriber;

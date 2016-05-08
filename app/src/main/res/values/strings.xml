@@ -76,8 +76,10 @@
     <string name="register_success">注册成功</string>
     <string name="login_success">登陆成功</string>
     <string name="follow">Follow</string>
-    <string name="course_time">时长:%s</string>
-    <string name="joinmain_wrap">%ld人已参加</string>
+    <string name="course_time_wrap">时长:%s</string>
+    <string name="joinmain_wrap">%d人已参加</string>
+    <string name="date_today">今天</string>
+    <string name="date_yesterday">昨天</string>
 </resources>
 
 

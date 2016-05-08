@@ -12,7 +12,7 @@ import java.util.List;
 
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.constants.HttpConstants;
-import cn.ifreedomer.beauty.entity.PopularCourseBean;
+import cn.ifreedomer.beauty.entity.jsonbean.PopularCourseBean;
 import cn.ifreedomer.beauty.listener.TextCheckBoxListener;
 import cn.ifreedomer.beauty.notifycation.FollowEvent;
 import cn.ifreedomer.beauty.notifycation.NotifycationManager;
