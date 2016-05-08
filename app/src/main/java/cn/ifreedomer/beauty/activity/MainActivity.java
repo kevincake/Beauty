@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.adapter.ViewPagerFragmentAdapter;
 import cn.ifreedomer.beauty.fragment.CourseFragment;
+import cn.ifreedomer.beauty.fragment.MomentsFragment;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
@@ -60,9 +61,9 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
 
     private void initFragments() {
         fragments.add(new CourseFragment());
-        fragments.add(new CourseFragment());
-        fragments.add(new CourseFragment());
-        fragments.add(new CourseFragment());
+        fragments.add(new MomentsFragment());
+        fragments.add(new MomentsFragment());
+        fragments.add(new MomentsFragment());
 
     }
 

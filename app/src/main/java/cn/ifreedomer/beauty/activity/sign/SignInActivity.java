@@ -20,6 +20,7 @@ import cn.ifreedomer.beauty.network.HttpMethods;
 import cn.ifreedomer.beauty.subscribers.ProgressSubscriber;
 import cn.ifreedomer.beauty.subscribers.SubscriberOnNextListener;
 import cn.ifreedomer.beauty.util.IntentUtils;
+import cn.ifreedomer.beauty.util.LogUtil;
 import cn.ifreedomer.beauty.util.StringUtils;
 import cn.ifreedomer.beauty.util.ToastUtil;
 
@@ -54,7 +55,9 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                 AppManager.getInstance().setToken(logInResult.getToken());
                 AppManager.getInstance().setLogin(true);
                 IntentUtils.startMainActivity(SignInActivity.this);
+                LogUtil.error("sign",logInResult.toString());
                 SignInActivity.this.finish();
+
                 ToastUtil.showTextToast(SignInActivity.this, getString(R.string.login_success));
             }
         };

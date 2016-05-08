@@ -35,4 +35,5 @@ public class HttpConstants {
     public static final String SIGN_UP = HttpConstants.SIGN+"signUp";
 
     public static final String FOLLOW_STATUS_KEY = "followStatus";
+    public static final String USERID = "userId";
 }

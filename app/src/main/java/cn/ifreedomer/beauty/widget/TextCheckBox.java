@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,17 +44,31 @@ public class TextCheckBox extends RelativeLayout {
         tv.setText(textStr);
         cb = (CheckBox) findViewById(R.id.checkbox);
         cb.setButtonDrawable(btnImg);
-        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cb.setOnClickListener(new OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                tv.setVisibility(b? View.GONE : View.VISIBLE);
-                if (textCheckBoxListener!=null){
+            public void onClick(View view) {
+                boolean b = cb.isChecked();
+                tv.setVisibility(b ? View.GONE : View.VISIBLE);
+                if (textCheckBoxListener != null) {
                     textCheckBoxListener.onCheckChangeListener(b);
                 }
             }
         });
+
+
+//
+//                new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                tv.setVisibility(b? View.GONE : View.VISIBLE);
+//                if (textCheckBoxListener!=null){
+//                    textCheckBoxListener.onCheckChangeListener(b);
+//                }
+//            }
+//        });
     }
-    public void setTextCheckBoxListener(TextCheckBoxListener textCheckBoxListener){
+
+    public void setTextCheckBoxListener(TextCheckBoxListener textCheckBoxListener) {
         this.textCheckBoxListener = textCheckBoxListener;
     }
 
@@ -67,4 +80,8 @@ public class TextCheckBox extends RelativeLayout {
         tv.setText(text);
     }
 
+    public void setChecked(boolean b) {
+        cb.setChecked(b);
+        tv.setVisibility(b ? View.GONE : View.VISIBLE);
+    }
 }

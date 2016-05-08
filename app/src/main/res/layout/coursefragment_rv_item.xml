@@ -82,7 +82,7 @@
             android:layout_height="match_parent"
             android:alpha="20"
             android:layout_gravity="center"
-            fresco:actualImageScaleType="fitCenter"
+            fresco:actualImageScaleType="centerCrop"
             fresco:placeholderImage="@mipmap/default_course_bg"
             fresco:placeholderImageScaleType="centerCrop"/>
         <ImageView

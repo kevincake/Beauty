@@ -29,4 +29,12 @@ public class FollowEvent {
     public void setFollowStatus(int followStatus) {
         this.followStatus = followStatus;
     }
+
+    @Override
+    public String toString() {
+        return "FollowEvent{" +
+                "userId=" + userId +
+                ", followStatus=" + followStatus +
+                '}';
+    }
 }

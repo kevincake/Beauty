@@ -24,11 +24,13 @@ import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.adapter.CourseRecycleViewAdapter;
 import cn.ifreedomer.beauty.entity.PoplarList;
 import cn.ifreedomer.beauty.entity.PopularCourseBean;
+import cn.ifreedomer.beauty.entity.User;
 import cn.ifreedomer.beauty.network.HttpMethods;
 import cn.ifreedomer.beauty.notifycation.FollowEvent;
 import cn.ifreedomer.beauty.notifycation.NotifycationManager;
 import cn.ifreedomer.beauty.subscribers.ProgressSubscriber;
 import cn.ifreedomer.beauty.subscribers.SubscriberOnNextListener;
+import cn.ifreedomer.beauty.util.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +43,8 @@ public class CourseFragment extends BaseFragment {
     private SubscriberOnNextListener<PoplarList> popularSubscriber;
     private int curPageIndex = 1;
     private SubscriberOnNextListener followStatusSubscriber;
-
+    private List<PopularCourseBean> courseList;
+    private FollowEvent followEvent;
     @Override
     public void initView() {
         ButterKnife.bind(this,rootView);
@@ -51,10 +54,10 @@ public class CourseFragment extends BaseFragment {
         popularSubscriber = new SubscriberOnNextListener<PoplarList>() {
             @Override
             public void onNext(PoplarList popularCourseList) {
-                List<PopularCourseBean> courseList = popularCourseList.getCourseList();
+                courseList = popularCourseList.getCourseList();
                 recycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recycleview.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-                CourseRecycleViewAdapter adapter = new CourseRecycleViewAdapter(getActivity(),R.layout.coursefragment_rv_item,courseList);
+                CourseRecycleViewAdapter adapter = new CourseRecycleViewAdapter(getActivity(),R.layout.coursefragment_rv_item, courseList);
                 recycleview.setAdapter(adapter);
 
             }
@@ -63,7 +66,18 @@ public class CourseFragment extends BaseFragment {
         //followStatus
         followStatusSubscriber = new SubscriberOnNextListener() {
             @Override
-            public void onNext(Object o) {
+            public void onNext(Object userIdResult) {
+                if (followEvent==null)return;
+                Long userId = followEvent.getUserId();
+                if (courseList==null&&courseList.isEmpty())return;
+                for (PopularCourseBean popularCourseBean:courseList){
+                    User user = popularCourseBean.getUser();
+                    if (user!=null&&user.getId()==followEvent.getUserId()){
+                        popularCourseBean.setIsFollow(followEvent.getFollowStatus());
+                        recycleview.getAdapter().notifyDataSetChanged();
+
+                    }
+                }
 
             }
         };
@@ -83,6 +97,8 @@ public class CourseFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void followEventReceive(FollowEvent followEvent){
+        LogUtil.error("followEventReceive",followEvent.toString());
+        this.followEvent = followEvent;
         HttpMethods.getInstance().postFollowStatus(new ProgressSubscriber(followStatusSubscriber,getActivity()),followEvent.getUserId(),followEvent.getFollowStatus());
     }
 

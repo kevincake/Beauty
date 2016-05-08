@@ -17,4 +17,11 @@ public class LogInResult extends TokenBase {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "LogInResult{" +
+                "user=" + user +
+                '}';
+    }
 }

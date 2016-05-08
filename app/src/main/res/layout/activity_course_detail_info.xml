@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/item_bg_color"
@@ -11,11 +13,16 @@
         android:orientation="vertical"
         >
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fresco="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/course_bg_iv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/default_course_bg"/>
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@mipmap/default_course_bg"
+            fresco:placeholderImageScaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="10000人已参加"
+                    android:text="@string/joinmain_wrap"
                     android:textColor="@color/text_color"/>
 
                 <Button

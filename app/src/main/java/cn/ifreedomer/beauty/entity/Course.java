@@ -1,11 +1,13 @@
 package cn.ifreedomer.beauty.entity;
 
+import java.io.Serializable;
+
 /**
  * @author:eavawu
  * @date: 5/6/16.
  * @todo:
  */
-public class Course {
+public class Course implements Serializable{
     private String courseName;
     private Long userId;
     private int type;

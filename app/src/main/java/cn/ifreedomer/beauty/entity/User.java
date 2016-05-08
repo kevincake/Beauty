@@ -1,11 +1,13 @@
 package cn.ifreedomer.beauty.entity;
 
+import java.io.Serializable;
+
 /**
  * @author:eavawu
  * @date: 5/1/16.
  * @todo:用户类
  */
-public class User {
+public class User implements Serializable{
     private Long id;
     private String name;
     private String avatar;
@@ -55,6 +57,18 @@ public class User {
 
     public String getSignature() {
         return signature;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sex=" + sex +
+                ", signature='" + signature + '\'' +
+                '}';
     }
 
     public void setSignature(String signature) {

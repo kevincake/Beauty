@@ -26,9 +26,10 @@ import cn.ifreedomer.beauty.widget.TextCheckBox;
  * @date: 5/3/16.
  * @todo:
  */
-public class CourseRecycleViewAdapter extends CommonAdapter<PopularCourseBean> implements View.OnClickListener, TextCheckBoxListener {
+public class CourseRecycleViewAdapter extends CommonAdapter<PopularCourseBean> {
     private Context ctx;
     private PopularCourseBean curItem;
+
     public CourseRecycleViewAdapter(Context context, int layoutId, List datas) {
         super(context, layoutId, datas);
         ctx = context;
@@ -36,37 +37,41 @@ public class CourseRecycleViewAdapter extends CommonAdapter<PopularCourseBean> i
 
 
     @Override
-    public void convert(ViewHolder holder, PopularCourseBean popularCourseBean) {
+    public void convert(ViewHolder holder, final PopularCourseBean popularCourseBean) {
         LogUtil.error("CourseRecycleViewAdapter", "convert");
         SimpleDraweeView userAvatarIv = holder.getView(R.id.user_circle_iv);
         if (popularCourseBean.getUser() != null) {
             ImageUtil.setFrescoImageView(popularCourseBean.getUser().getAvatar(), userAvatarIv);
-            holder.setOnClickListener(R.id.lessonphoto_iv, this);
+
 
         }
         SimpleDraweeView courseBgIv = holder.getView(R.id.course_bg_iv);
         ImageUtil.setFrescoImageView(popularCourseBean.getCourse().getPic()[0], courseBgIv);
-        holder.setOnClickListener(R.id.lessonphoto_iv, this);
+        holder.setOnClickListener(R.id.course_bg_iv, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentUtils.startCourseDetailActivity((Activity) ctx,popularCourseBean);
+            }
+        });
         holder.setText(R.id.course_name_tv, popularCourseBean.getCourse().getCourseName());
         holder.setText(R.id.course_time_tv, popularCourseBean.getCourse().getCourseTime() + "");
         //set follow status
+
         TextCheckBox followCb = holder.getView(R.id.follow_cb);
-        curItem = popularCourseBean;
-        followCb.setTextCheckBoxListener(this);
+        followCb.setChecked(popularCourseBean.getIsFollow()==HttpConstants.FOLLOWED);
+
+//        curItem = popularCourseBean;
+        followCb.setTextCheckBoxListener(new TextCheckBoxListener() {
+            @Override
+            public void onCheckChangeListener(boolean isCheck) {
+                LogUtil.error("setTextCheckBoxListener","TIME");
+                int followStatus = isCheck ? HttpConstants.FOLLOWED : HttpConstants.UNFOLLOWED;
+                NotifycationManager.getInstance().post(new FollowEvent(popularCourseBean.getUser().getId(), followStatus));
+            }
+        });
 //        textCheckBox.setOn
 
     }
 
-    @Override
-    public void onClick(View view) {
-        IntentUtils.startCourseDetailActivity((Activity) ctx);
-    }
 
-    @Override
-    public void onCheckChangeListener(boolean isCheck) {
-        int followStatus = isCheck ? HttpConstants.UNFOLLOWED : HttpConstants.FOLLOWED;
-        NotifycationManager.getInstance().post(new FollowEvent(curItem.getUser().getId(),followStatus));
-//        HttpMethods.getInstance().postFollowStatus(curItem.getUser().getId(),followStatus);
-
-    }
 }

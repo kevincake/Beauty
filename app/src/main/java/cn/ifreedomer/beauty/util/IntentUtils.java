@@ -16,6 +16,7 @@ import cn.ifreedomer.beauty.activity.sign.SignUpActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpFullInfoActivity;
 import cn.ifreedomer.beauty.constants.ImageConstants;
 import cn.ifreedomer.beauty.constants.IntentConstants;
+import cn.ifreedomer.beauty.entity.PopularCourseBean;
 
 /**
  * @author:eavawu
@@ -82,8 +83,9 @@ public class IntentUtils {
         context.startActivity(intent);
     }
 
-    public static void startCourseDetailActivity(Activity ctx) {
+    public static void startCourseDetailActivity(Activity ctx, PopularCourseBean popularCourseBean) {
         Intent intent = new Intent(ctx, CourseDetailInfoActivity.class);
+        intent.putExtra(IntentConstants.POPCOURSE_BEAN,popularCourseBean);
         ctx.startActivity(intent);
     }
 }
