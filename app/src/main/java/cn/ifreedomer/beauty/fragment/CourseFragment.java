@@ -22,7 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.adapter.CourseRecycleViewAdapter;
-import cn.ifreedomer.beauty.entity.jsonbean.PoplarList;
+import cn.ifreedomer.beauty.entity.jsonbean.CourseList;
 import cn.ifreedomer.beauty.entity.jsonbean.PopularCourseBean;
 import cn.ifreedomer.beauty.entity.User;
 import cn.ifreedomer.beauty.network.HttpMethods;
@@ -40,7 +40,7 @@ public class CourseFragment extends BaseFragment {
 
     @Bind(R.id.recycleview)
     RecyclerView recycleview;
-    private SubscriberOnNextListener<PoplarList> popularSubscriber;
+    private SubscriberOnNextListener<CourseList> popularSubscriber;
     private int curPageIndex = 1;
     private SubscriberOnNextListener followStatusSubscriber;
     private List<PopularCourseBean> courseList;
@@ -49,11 +49,11 @@ public class CourseFragment extends BaseFragment {
     public void initView() {
         ButterKnife.bind(this,rootView);
         NotifycationManager.getInstance().register(this);
-        final Type type = new TypeToken<PoplarList>() {
+        final Type type = new TypeToken<CourseList>() {
         }.getType();
-        popularSubscriber = new SubscriberOnNextListener<PoplarList>() {
+        popularSubscriber = new SubscriberOnNextListener<CourseList>() {
             @Override
-            public void onNext(PoplarList popularCourseList) {
+            public void onNext(CourseList popularCourseList) {
                 courseList = popularCourseList.getCourseList();
                 recycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recycleview.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
@@ -82,7 +82,7 @@ public class CourseFragment extends BaseFragment {
             }
         };
 
-        HttpMethods.getInstance().getPopularCourseList(new ProgressSubscriber<PoplarList>(popularSubscriber, getActivity()),curPageIndex);
+        HttpMethods.getInstance().getPopularCourseList(new ProgressSubscriber<CourseList>(popularSubscriber, getActivity()),curPageIndex);
 
     }
 

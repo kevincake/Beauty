@@ -7,7 +7,7 @@ import java.util.List;
  * @date: 5/7/16.
  * @todo:
  */
-public class PoplarList {
+public class CourseList {
     List<PopularCourseBean> courseList;
 
     public List<PopularCourseBean> getCourseList() {

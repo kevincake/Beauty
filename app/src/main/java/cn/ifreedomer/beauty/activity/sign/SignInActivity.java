@@ -58,6 +58,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                 LogUtil.error("sign",logInResult.toString());
                 SignInActivity.this.finish();
 
+
                 ToastUtil.showTextToast(SignInActivity.this, getString(R.string.login_success));
             }
         };

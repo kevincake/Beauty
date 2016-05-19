@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/eavawu/Documents/beauty_workspace/Beauty/vitamio/build/intermediates/res/merged/androidTest/debug/raw/libarm.so",
+        "source": "/Users/eavawu/Documents/beauty_workspace/Beauty/vitamio/build/intermediates/bundles/debug/res/raw/libarm.so"
+    },
+    {
         "merged": "/Users/eavawu/Documents/Android_workspace/Dancing/vitamio/build/intermediates/res/merged/androidTest/debug/raw/libarm.so",
         "source": "/Users/eavawu/Documents/Android_workspace/Dancing/vitamio/build/intermediates/bundles/debug/res/raw/libarm.so"
     }

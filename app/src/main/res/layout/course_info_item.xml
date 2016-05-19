@@ -1,0 +1,88 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:textcheckbox="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="240dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/course_bg_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:alpha="20"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:placeholderImage="@mipmap/default_course_bg"
+        fresco:placeholderImageScaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        android:background="#55000000"/>
+
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/course_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal"
+            android:text="PhotoGrash Memory"
+            android:textColor="@color/gray_lignt_text_color"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:id="@+id/course_author_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="By Eava.wu"
+            android:textColor="@color/text_color"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/lessonlike_tv"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="200dp"
+            android:drawableLeft="@mipmap/button_like"
+            android:gravity="center"
+            android:lines="1"
+            android:text="喜欢"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/course_time_tv"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="200dp"
+            android:drawableLeft="@mipmap/time"
+            android:gravity="center"
+            android:lines="1"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

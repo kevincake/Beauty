@@ -12,15 +12,21 @@ import java.util.concurrent.TimeUnit;
 import cn.ifreedomer.beauty.activity.base.ActivityStackManager;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
 import cn.ifreedomer.beauty.constants.HttpConstants;
+import cn.ifreedomer.beauty.entity.User;
 import cn.ifreedomer.beauty.entity.jsonbean.CourseItems;
+import cn.ifreedomer.beauty.entity.jsonbean.FollowListResult;
 import cn.ifreedomer.beauty.entity.jsonbean.HttpResult;
 import cn.ifreedomer.beauty.entity.jsonbean.IsPhoneRegister;
+import cn.ifreedomer.beauty.entity.jsonbean.Like;
 import cn.ifreedomer.beauty.entity.jsonbean.LogInResult;
-import cn.ifreedomer.beauty.entity.jsonbean.PoplarList;
+import cn.ifreedomer.beauty.entity.jsonbean.CourseList;
+import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailList;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.retrofitservice.CourseService;
 import cn.ifreedomer.beauty.retrofitservice.FollowService;
 import cn.ifreedomer.beauty.retrofitservice.SignService;
+import cn.ifreedomer.beauty.retrofitservice.SocialService;
+import cn.ifreedomer.beauty.retrofitservice.UserService;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,7 +45,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    public static final String BASE_URL = "http://192.168.1.100:8080/";
+    public static final String BASE_URL = "http://192.168.1.101:8080/";
 
     private static final int DEFAULT_TIMEOUT = 5;
 
@@ -47,6 +53,8 @@ public class HttpMethods {
     private SignService signService;
     private CourseService courseService;
     private FollowService followService;
+    private SocialService socialService;
+    private UserService userService;
 
     //构造方法私有
     private HttpMethods() {
@@ -76,6 +84,8 @@ public class HttpMethods {
         signService = retrofit.create(SignService.class);
         courseService = retrofit.create(CourseService.class);
         followService = retrofit.create(FollowService.class);
+        socialService = retrofit.create(SocialService.class);
+        userService = retrofit.create(UserService.class);
     }
 
     public void sendFollowReq(int followStatus, Long id) {
@@ -139,11 +149,18 @@ public class HttpMethods {
         toSubscribe(observable, subscriber);
     }
 
-    public void getPopularCourseList(Subscriber<PoplarList> subscriber, int pageIndex) {
+    public void getPopularCourseList(Subscriber<CourseList> subscriber, int pageIndex) {
         Observable observable = courseService.getPopularCourseList(pageIndex)
-                .map(new HttpResultFunc<PoplarList>());
+                .map(new HttpResultFunc<CourseList>());
         toSubscribe(observable, subscriber);
     }
+
+    public void getLikeCourseList(Subscriber<CourseList> subscriber, int pageIndex) {
+        Observable observable = courseService.getLikeCourse(pageIndex)
+                .map(new HttpResultFunc<CourseList>());
+        toSubscribe(observable, subscriber);
+    }
+
 
     //==================FOLLOW===================
     public void postFollowStatus(Subscriber subscriber, long userId, int followStatus) {
@@ -153,12 +170,52 @@ public class HttpMethods {
     }
 
 
+    public void getFollowList(Subscriber<FollowListResult> subscriber){
+        Observable observable = followService.getFollowList()
+                .map(new HttpResultFunc<FollowListResult>());
+        toSubscribe(observable, subscriber);
+    }
+
+    //=====================social===============
+    public void getSocialDetails(Subscriber<SocialDetailList> subscriber){
+        Observable observable = socialService.getSocialDetails()
+                .map(new HttpResultFunc<SocialDetailList>());
+        toSubscribe(observable, subscriber);
+    }
+
+
+
+    public void postLikeStatus(Subscriber<Like> subscriber,long socialId,int status) {
+        Observable observable = socialService.postLike(status,socialId)
+                .map(new HttpResultFunc<Like>());
+        toSubscribe(observable, subscriber);
+    }
+
+    //====================User=====================
+    public void updateUser(Subscriber<User> subscriber, String signture, String nickName, String avatar, String cover, String password){
+
+        Map<String, String> params = new LinkedHashMap<>();
+        params.put(HttpConstants.NAME, nickName);
+        params.put(HttpConstants.AVATAR, avatar);
+        params.put(HttpConstants.COVER,cover);
+        params.put(HttpConstants.PASSWORD, password);
+        params.put(HttpConstants.SIGNTURE,signture);
+        Observable observable = userService.updateUser(params)
+                .map(new HttpResultFunc<User>());
+        toSubscribe(observable, subscriber);
+    }
+
+
+
+
     private <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
         o.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s);
     }
+
+
 
     /**
      * 用来统一处理Http的resultCode,并将HttpResult的Data部分剥离出来返回给subscriber

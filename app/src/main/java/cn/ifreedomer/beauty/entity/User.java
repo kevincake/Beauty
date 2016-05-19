@@ -11,9 +11,18 @@ public class User implements Serializable{
     private Long id;
     private String name;
     private String avatar;
+    private String cover;
     private String phone;
     private Integer sex;
     private String signature;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public Long getId() {
         return id;

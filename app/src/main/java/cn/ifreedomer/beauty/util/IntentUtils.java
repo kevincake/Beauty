@@ -8,9 +8,12 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
+import cn.ifreedomer.beauty.activity.CommentActivity;
 import cn.ifreedomer.beauty.activity.CourseDetailInfoActivity;
 import cn.ifreedomer.beauty.activity.MainActivity;
 import cn.ifreedomer.beauty.activity.VideoPlayerActivity;
+import cn.ifreedomer.beauty.activity.personcenter.EditProfileActivity;
+import cn.ifreedomer.beauty.activity.personcenter.SettingActivity;
 import cn.ifreedomer.beauty.activity.sign.SignInActivity;
 import cn.ifreedomer.beauty.activity.sign.SignSelectActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpActivity;
@@ -18,6 +21,7 @@ import cn.ifreedomer.beauty.activity.sign.SignUpFullInfoActivity;
 import cn.ifreedomer.beauty.constants.ImageConstants;
 import cn.ifreedomer.beauty.constants.IntentConstants;
 import cn.ifreedomer.beauty.entity.jsonbean.PopularCourseBean;
+import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
 
 /**
  * @author:eavawu
@@ -93,6 +97,24 @@ public class IntentUtils {
     public static void startVideoPlayerActivity(Activity ctx, String url) {
         Intent intent = new Intent(ctx, VideoPlayerActivity.class);
         intent.putExtra(IntentConstants.VIDEO_URL,url);
+        ctx.startActivity(intent);
+    }
+
+    public static void startCommentActivity(Activity ctx, SocialDetailBean socialDetailBean) {
+        Intent intent = new Intent(ctx, CommentActivity.class);
+        intent.putExtra(IntentConstants.SOCIAL_BEAN,socialDetailBean);
+        ctx.startActivity(intent);
+
+    }
+
+    public static void startEditProfileActivity(Activity ctx) {
+        Intent intent = new Intent(ctx, EditProfileActivity.class);
+        ctx.startActivity(intent);
+
+    }
+
+    public static void startSettingActivity(Activity ctx) {
+        Intent intent = new Intent(ctx, SettingActivity.class);
         ctx.startActivity(intent);
     }
 }

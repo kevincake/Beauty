@@ -34,6 +34,20 @@ public class HttpConstants {
     public static final String SIGN_IN = HttpConstants.SIGN+"signIn";
     public static final String SIGN_UP = HttpConstants.SIGN+"signUp";
 
+
+    public static final String SOCIAL_PATH = "/social";
+    public static final String GET_SOCIALS = SOCIAL_PATH+ "/getSocials";
+    public static final String LIKE_SOCIAL = SOCIAL_PATH+ "/like";
+
     public static final String FOLLOW_STATUS_KEY = "followStatus";
     public static final String USERID = "userId";
+
+    public static final int UNLIKE_STATUS = 0;
+    public static final int LIKE_STATUS = 1;
+    public static final String STATUS = "status";
+    public static final String SOCIAL_ID = "socialId";
+    public static final String UPDATE_USER = USER+ "/updateUser";
+    public static final String COVER = "cover";
+    public static final String SIGNTURE = "signture";
+    public static final String GET_FOLLOWLIST = "getFollowList";
 }

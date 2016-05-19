@@ -40,9 +40,11 @@ dependencies {
     compile files('libs/MobTools-2016.0303.1229.jar')
     compile files('libs/MobCommons-2016.0303.1229.jar')
     compile project(':MaterialTabsModule')
+    compile project(':vitamio')
+    compile project(':tagView')
     compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.umeng.analytics:analytics:latest.integration'
-    compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.umeng.analytics:analytics:5.6.7'
+    compile 'com.tencent.bugly:crashreport:2.1.1'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'io.reactivex:rxjava:1.1.3'
     compile 'io.reactivex:rxandroid:1.1.0'
@@ -57,8 +59,9 @@ dependencies {
     compile 'com.flipboard:bottomsheet-commons:1.5.0'
     compile 'com.github.orhanobut:hawk:1.23'
     compile 'com.zhy:base-adapter:2.0.0'
-    compile 'co.lujun:androidtagview:1.0.3'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'org.sufficientlysecure:html-textview:1.5'
     compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.android.support:recyclerview-v7:23.0.1'
-    compile project(':vitamio')
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
 }

@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/root_view"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:id="@+id/root_view"
               android:background="@color/item_bg_color"
               android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <TextView
-
             android:id="@+id/dancingplan_chapter_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="第1节"
-            android:textColor="@color/text_color" />
+            android:background="@mipmap/red_index_bg"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/text_color"
+            android:textSize="20sp"/>
 
-        <TextView
+        <LinearLayout
+            android:layout_toRightOf="@+id/dancingplan_chapter_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="50dp"
-            android:layout_toRightOf="@+id/dancingplan_chapter_tv"
-            android:text="简单双腿交叉"
-            android:textColor="@color/gray_text_color"
-            android:textSize="15sp"
-            android:id="@+id/dancingplan_name_tv"/>
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/dancingplan_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="简单双腿交叉"
+                android:textColor="@color/WHITE"
+                android:textSize="25sp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="菇凉，你缺我啊"
+                android:textColor="@color/WHITE"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
 
         <TextView
-
             android:id="@+id/dancingplan_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +57,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:text="19分钟"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"/>
     </RelativeLayout>
 
 </LinearLayout>

@@ -3,23 +3,29 @@ package cn.ifreedomer.beauty.activity;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.ifreedomer.beauty.R;
+import cn.ifreedomer.beauty.activity.base.ActivityStackManager;
+import cn.ifreedomer.beauty.activity.base.BaseActivity;
 import cn.ifreedomer.beauty.adapter.ViewPagerFragmentAdapter;
 import cn.ifreedomer.beauty.fragment.CourseFragment;
 import cn.ifreedomer.beauty.fragment.MomentsFragment;
+import cn.ifreedomer.beauty.fragment.SocialFragment;
+import cn.ifreedomer.beauty.fragment.personcenter.PersonCenterFragment;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 
-public class MainActivity extends AppCompatActivity implements MaterialTabListener {
+public class MainActivity extends BaseActivity implements MaterialTabListener {
 
     @Bind(R.id.tabHost)
     MaterialTabHost tabHost;
@@ -36,6 +42,34 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
         initFragments();
         initPageAndTabHost();
 
+    }
+    boolean isExit = false;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!isExit) {
+                isExit = true;
+                Toast.makeText(this, R.string.exit_str, Toast.LENGTH_SHORT)
+                        .show();
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        isExit = false;
+                    }
+                }, 2000);
+                ;
+
+                return false;
+
+            } else {
+                ActivityStackManager.getScreenManager().popAllActivity();
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(0);
+                //
+            }
+        }
+
+        return false;
     }
 
     private void initPageAndTabHost() {
@@ -61,9 +95,9 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
 
     private void initFragments() {
         fragments.add(new CourseFragment());
+        fragments.add(new SocialFragment());
         fragments.add(new MomentsFragment());
-        fragments.add(new MomentsFragment());
-        fragments.add(new MomentsFragment());
+        fragments.add(new PersonCenterFragment());
 
     }
 

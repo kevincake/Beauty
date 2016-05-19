@@ -2,7 +2,7 @@ package cn.ifreedomer.beauty.retrofitservice;
 
 import cn.ifreedomer.beauty.entity.jsonbean.CourseItems;
 import cn.ifreedomer.beauty.entity.jsonbean.HttpResult;
-import cn.ifreedomer.beauty.entity.jsonbean.PoplarList;
+import cn.ifreedomer.beauty.entity.jsonbean.CourseList;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -14,9 +14,11 @@ import rx.Observable;
  */
 public interface CourseService {
     @GET("course")
-    Observable<HttpResult<PoplarList>> getPopularCourseList(@Query("pageIndex")int pageIndex);
+    Observable<HttpResult<CourseList>> getPopularCourseList(@Query("pageIndex")int pageIndex);
     @GET("course/getCourseItems")
     Observable<HttpResult<CourseItems>> getCourseItems(@Query("courseId")long courseId);
+    @GET("course/getLikeCourse")
+    Observable<HttpResult<CourseList>> getLikeCourse(@Query("pageIndex")int pageIndex);
 
 
 }

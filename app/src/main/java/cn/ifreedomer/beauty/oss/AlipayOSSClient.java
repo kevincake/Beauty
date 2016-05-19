@@ -123,7 +123,8 @@ public class AlipayOSSClient {
 
             @Override
             public void onFailure(OSSRequest ossRequest, ClientException e, ServiceException e1) {
-
+                LogUtil.error("client error", e.getMessage());
+                LogUtil.error("server error", e1.getMessage());
             }
         });
     }

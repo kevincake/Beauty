@@ -65,16 +65,24 @@
             android:name=".activity.sign.SignUpFullInfoActivity"
             android:theme="@style/NoActionBarStyle">
         </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:theme="@style/StateBarStyle">
-        </activity>
+         <activity
+         android:name=".activity.MainActivity"
+         android:theme="@style/StateBarStyle">
+         </activity>
         <activity android:name=".activity.CourseDetailInfoActivity">
         </activity>
         <activity
-            android:theme="@style/NoActionbarFullScreen"
+            android:name=".activity.VideoPlayerActivity"
             android:screenOrientation="landscape"
-            android:name=".activity.VideoPlayerActivity">
+            android:theme="@style/NoActionbarFullScreen">
+        </activity>
+        <activity android:name=".activity.personcenter.EditProfileActivity">
+        </activity>
+        <activity android:name=".activity.CommentActivity">
+        </activity>
+         <activity android:name=".activity.personcenter.SettingActivity">
+         </activity>
+        <activity android:name=".activity.personcenter.FollowsActivity">
         </activity>
     </application>
 

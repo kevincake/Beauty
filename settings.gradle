@@ -1,1 +1,1 @@
-include ':app', ':MaterialTabsModule', ':vitamio'
+include ':app', ':MaterialTabsModule', ':vitamio', ':tagView'

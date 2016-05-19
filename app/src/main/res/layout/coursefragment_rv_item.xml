@@ -71,48 +71,135 @@
                 textcheckbox:text="@string/follow"/>
         </FrameLayout>
     </RelativeLayout>
-
-    <FrameLayout
+    <cn.ifreedomer.beauty.widget.CourseInfoView
+        android:id="@+id/course_info_view"
         android:layout_width="match_parent"
-        android:layout_height="240dp">
+        android:layout_height="240dp"/>
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="240dp">-->
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/course_bg_iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="20"
-            android:layout_gravity="center"
-            fresco:actualImageScaleType="centerCrop"
-            fresco:placeholderImage="@mipmap/default_course_bg"
-            fresco:placeholderImageScaleType="centerCrop"/>
-        <ImageView
-            android:src="@mipmap/play_big"
-            android:layout_gravity="center"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
-        <RelativeLayout
-            android:layout_marginBottom="30dp"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content">
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+    <!--android:id="@+id/course_bg_iv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:alpha="20"-->
+    <!--android:layout_gravity="center"-->
+    <!--fresco:actualImageScaleType="centerCrop"-->
+    <!--fresco:placeholderImage="@mipmap/default_course_bg"-->
+    <!--fresco:placeholderImageScaleType="centerCrop"/>-->
+    <!--<ImageView-->
+    <!--android:src="@mipmap/play_big"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_width="80dp"-->
+    <!--android:layout_height="80dp"/>-->
+    <!--<RelativeLayout-->
+    <!--android:layout_marginBottom="30dp"-->
+    <!--android:layout_gravity="bottom|center_horizontal"-->
+    <!--android:layout_width="200dp"-->
+    <!--android:layout_height="wrap_content">-->
 
 
-            <TextView
-                android:layout_alignParentLeft="true"
-                android:textColor="@color/WHITE"
-                android:text="眼妆初级教程"
-                android:id="@+id/course_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/course_time_tv"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/WHITE"
-                android:text="Time:1:00:00"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
+    <!--<TextView-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:textColor="@color/WHITE"-->
+    <!--android:text="眼妆初级教程"-->
+    <!--android:id="@+id/course_name_tv"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/course_time_tv"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:textColor="@color/WHITE"-->
+    <!--android:text="Time:1:00:00"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
+    <!--</RelativeLayout>-->
 
-    </FrameLayout>
+    <!--</FrameLayout>-->
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="240dp">-->
 
+        <!--<com.facebook.drawee.view.SimpleDraweeView-->
+            <!--android:id="@+id/course_bg_iv"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:alpha="20"-->
+            <!--fresco:actualImageScaleType="centerCrop"-->
+            <!--fresco:placeholderImage="@mipmap/default_course_bg"-->
+            <!--fresco:placeholderImageScaleType="centerCrop"/>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="240dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="#55000000"/>-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/title_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="25dp"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/course_name_tv"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="50dp"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:text="PhotoGrash Memory"-->
+                <!--android:textColor="@color/gray_lignt_text_color"-->
+                <!--android:textSize="30sp"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/course_author_tv"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:text="By Eava.wu"-->
+                <!--android:textColor="@color/text_color"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/title_layout"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="20dp">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/lessonlike_tv"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_marginLeft="200dp"-->
+                <!--android:drawableLeft="@mipmap/button_like"-->
+                <!--android:gravity="center"-->
+                <!--android:lines="1"-->
+                <!--android:text="喜欢"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/text_color"-->
+                <!--android:textSize="12sp"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/course_time_tv"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="200dp"-->
+                <!--android:drawableLeft="@mipmap/time"-->
+                <!--android:gravity="center"-->
+                <!--android:lines="1"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/text_color"-->
+                <!--android:textSize="12sp"/>-->
+        <!--</RelativeLayout>-->
+
+
+    <!--</RelativeLayout>-->
 </LinearLayout>

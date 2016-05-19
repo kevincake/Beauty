@@ -19,6 +19,7 @@ import cn.ifreedomer.beauty.notifycation.NotifycationManager;
 import cn.ifreedomer.beauty.util.ImageUtil;
 import cn.ifreedomer.beauty.util.IntentUtils;
 import cn.ifreedomer.beauty.util.LogUtil;
+import cn.ifreedomer.beauty.widget.CourseInfoView;
 import cn.ifreedomer.beauty.widget.TextCheckBox;
 
 /**
@@ -31,9 +32,10 @@ public class CourseRecycleViewAdapter extends CommonAdapter<PopularCourseBean> {
     private PopularCourseBean curItem;
 
     public CourseRecycleViewAdapter(Context context, int layoutId, List datas) {
-        super(context, layoutId, datas);
+        super(context, R.layout.coursefragment_rv_item, datas);
         ctx = context;
     }
+
 
 
     @Override
@@ -45,22 +47,19 @@ public class CourseRecycleViewAdapter extends CommonAdapter<PopularCourseBean> {
 
 
         }
-        SimpleDraweeView courseBgIv = holder.getView(R.id.course_bg_iv);
-        ImageUtil.setFrescoImageView(popularCourseBean.getCourse().getPic()[0], courseBgIv);
-        holder.setOnClickListener(R.id.course_bg_iv, new View.OnClickListener() {
+        holder.setText(R.id.name_tv,popularCourseBean.getUser().getName());
+        CourseInfoView courseInfoView = holder.getView(R.id.course_info_view);
+        courseInfoView.setCourse(popularCourseBean.getCourse());
+        courseInfoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 IntentUtils.startCourseDetailActivity((Activity) ctx,popularCourseBean);
             }
         });
-        holder.setText(R.id.course_name_tv, popularCourseBean.getCourse().getCourseName());
-        holder.setText(R.id.course_time_tv, popularCourseBean.getCourse().getCourseTime() + "");
-        //set follow status
 
         TextCheckBox followCb = holder.getView(R.id.follow_cb);
         followCb.setChecked(popularCourseBean.getIsFollow()==HttpConstants.FOLLOWED);
 
-//        curItem = popularCourseBean;
         followCb.setTextCheckBoxListener(new TextCheckBoxListener() {
             @Override
             public void onCheckChangeListener(boolean isCheck) {

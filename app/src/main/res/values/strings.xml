@@ -80,6 +80,22 @@
     <string name="joinmain_wrap">%d人已参加</string>
     <string name="date_today">今天</string>
     <string name="date_yesterday">昨天</string>
+    <string name="like_wrap">%d Like .</string>
+    <string name="followcount_wrap">%d Comment</string>
+    <string name="write_something_nice">Write something nice...</string>
+    <string name="share">share</string>
+    <string name="report">report</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="cover_photo">Cover Photo</string>
+    <string name="name">Name</string>
+    <string name="password">password</string>
+    <string name="signture">SignTure</string>
+    <string name="collect">收藏</string>
+    <string name="setting">设置</string>
+    <string name="trasaction">trasaction</string>
+    <string name="exit_str">在按一次退出应用</string>
+    <string name="like_course">喜欢的课程</string>
+    <string name="comments">我的动态</string>
 </resources>
 
 

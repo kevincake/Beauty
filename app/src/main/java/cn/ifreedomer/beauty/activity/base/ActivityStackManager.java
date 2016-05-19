@@ -75,4 +75,15 @@ public class ActivityStackManager {
 			popActivity(activity);
 		}
 	}
+
+    public void popAllActivity(){
+        while (true) {
+            AppCompatActivity activity = currentActivity();
+            if (activity == null) {
+                break;
+            }
+
+            popActivity(activity);
+        }
+    }
 }
