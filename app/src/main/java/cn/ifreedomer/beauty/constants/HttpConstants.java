@@ -49,5 +49,7 @@ public class HttpConstants {
     public static final String UPDATE_USER = USER+ "/updateUser";
     public static final String COVER = "cover";
     public static final String SIGNTURE = "signture";
-    public static final String GET_FOLLOWLIST = "getFollowList";
+    public static final String GET_FOLLOWLIST =FOLLOW+ "getFollowList";
+    public static final String PAGEINDEX = "pageIndex";
+    public static final String GET_MINE_SOCIAL =SOCIAL_PATH+ "/getMineSocial";
 }

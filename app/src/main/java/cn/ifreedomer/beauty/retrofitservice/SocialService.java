@@ -20,5 +20,6 @@ public interface SocialService {
 
     @POST(HttpConstants.LIKE_SOCIAL)
     Observable<HttpResult<Like>> postLike(@Query(HttpConstants.STATUS) int status, @Query(HttpConstants.SOCIAL_ID)long socialId);
-
+    @POST(HttpConstants.GET_MINE_SOCIAL)
+    Observable<HttpResult<SocialDetailList>> getMineSocial();
 }

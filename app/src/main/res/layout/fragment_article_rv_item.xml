@@ -1,7 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    fresco:cardBackgroundColor="@color/gray_bg_color"
+    fresco:cardCornerRadius="0dp"
+    android:layout_marginTop="3dp"
+    android:id="@+id/root_view"
+    android:layout_marginBottom="3dp"
+    android:layout_height="wrap_content"
+    android:minHeight="100dp">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/user_circle_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+
+                android:layout_marginTop="15dp"
+                fresco:actualImageScaleType="fitCenter"
+                fresco:placeholderImage="@mipmap/head_img_f"
+                fresco:placeholderImageScaleType="centerCrop"
+                fresco:roundAsCircle="true"
+                />
+
+            <TextView
+
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/user_circle_iv"
+                android:text="name"
+                android:textColor="@color/gray_text_color"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/readcount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="这是一篇文章"
+            android:textColor="@color/WHITE"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="heheh "
+            android:textColor="@color/WHITE"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

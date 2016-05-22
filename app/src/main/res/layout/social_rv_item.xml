@@ -3,7 +3,6 @@
               android:id="@+id/root_view"
               android:layout_width="match_parent"
               android:layout_height="500dp"
-              android:background="@color/item_bg_color"
               android:orientation="vertical">
 
     <cn.ifreedomer.beauty.widget.SocialInfoView

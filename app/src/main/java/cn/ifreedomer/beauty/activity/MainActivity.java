@@ -1,9 +1,9 @@
 package cn.ifreedomer.beauty.activity;
 
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
@@ -17,18 +17,19 @@ import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.activity.base.ActivityStackManager;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
 import cn.ifreedomer.beauty.adapter.ViewPagerFragmentAdapter;
+import cn.ifreedomer.beauty.constants.IntentConstants;
+import cn.ifreedomer.beauty.fragment.ArticleFragment;
 import cn.ifreedomer.beauty.fragment.CourseFragment;
-import cn.ifreedomer.beauty.fragment.MomentsFragment;
 import cn.ifreedomer.beauty.fragment.SocialFragment;
 import cn.ifreedomer.beauty.fragment.personcenter.PersonCenterFragment;
+import cn.ifreedomer.beauty.widget.IconTableView;
 import it.neokree.materialtabs.MaterialTab;
-import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 
 public class MainActivity extends BaseActivity implements MaterialTabListener {
 
     @Bind(R.id.tabHost)
-    MaterialTabHost tabHost;
+    TabLayout tabHost;
     @Bind(R.id.pager)
     ViewPager pager;
     private ArrayList<Fragment> fragments = new ArrayList<>();
@@ -74,50 +75,43 @@ public class MainActivity extends BaseActivity implements MaterialTabListener {
 
     private void initPageAndTabHost() {
         // init view pager
-        ViewPagerFragmentAdapter  pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(),fragments);
+        ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), fragments);
         pager.setAdapter(pagerAdapter);
-        pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                // when user do a swipe the selected tab change
-                tabHost.setSelectedNavigationItem(position);
-            }
-        });
-        // insert all tabs from pagerAdapter data
-        for (int i = 0; i < pagerAdapter.getCount(); i++) {
-            tabHost.addTab(
-                    tabHost.newTab()
-                            .setIcon(getIcon(i))
-                            .setTabListener(this)
-            );
+        tabHost.setupWithViewPager(pager);
+        for (int i=0;i<tabHost.getTabCount();i++){
+            IconTableView iconTableView = new IconTableView(this);
+            iconTableView.setIcon(getIcon(i));
+            tabHost.getTabAt(i).setCustomView(iconTableView);
+
         }
     }
 
     private void initFragments() {
         fragments.add(new CourseFragment());
-        fragments.add(new SocialFragment());
-        fragments.add(new MomentsFragment());
+        Bundle bundle = new Bundle();
+        bundle.putInt(IntentConstants.SOCIAL_SHOWTYPE,SocialFragment.COMMON_TYPE);
+        SocialFragment socialFragment = new SocialFragment();
+        socialFragment.setArguments(bundle);
+        fragments.add(socialFragment);
+        fragments.add(new ArticleFragment());
         fragments.add(new PersonCenterFragment());
 
     }
-
-
-    /*
-    * It doesn't matter the color of the icons, but they must have solid colors
-    */
-    private Drawable getIcon(int position) {
+    private int getIcon(int position) {
         switch (position) {
             case 0:
-                return res.getDrawable(R.mipmap.tutourial_icon);
+                return (R.mipmap.tutourial_icon);
             case 1:
-                return res.getDrawable(R.mipmap.group_icon);
+                return R.mipmap.group_icon;
             case 2:
-                return res.getDrawable(R.mipmap.share_icon);
+                return R.mipmap.share_icon;
             case 3:
-                return res.getDrawable(R.mipmap.personal_center_icon);
+                return R.mipmap.personal_center_icon;
         }
-        return null;
+        return R.mipmap.share_icon;
     }
+
+
 
     @Override
     protected void onDestroy() {

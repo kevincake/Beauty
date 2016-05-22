@@ -13,6 +13,7 @@ import cn.ifreedomer.beauty.activity.base.ActivityStackManager;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
 import cn.ifreedomer.beauty.constants.HttpConstants;
 import cn.ifreedomer.beauty.entity.User;
+import cn.ifreedomer.beauty.entity.jsonbean.ArticleListResult;
 import cn.ifreedomer.beauty.entity.jsonbean.CourseItems;
 import cn.ifreedomer.beauty.entity.jsonbean.FollowListResult;
 import cn.ifreedomer.beauty.entity.jsonbean.HttpResult;
@@ -22,6 +23,7 @@ import cn.ifreedomer.beauty.entity.jsonbean.LogInResult;
 import cn.ifreedomer.beauty.entity.jsonbean.CourseList;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailList;
 import cn.ifreedomer.beauty.manager.AppManager;
+import cn.ifreedomer.beauty.retrofitservice.ArticleService;
 import cn.ifreedomer.beauty.retrofitservice.CourseService;
 import cn.ifreedomer.beauty.retrofitservice.FollowService;
 import cn.ifreedomer.beauty.retrofitservice.SignService;
@@ -45,7 +47,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    public static final String BASE_URL = "http://192.168.1.101:8080/";
+    public static final String BASE_URL = "http://192.168.1.103:8080/";
 
     private static final int DEFAULT_TIMEOUT = 5;
 
@@ -55,6 +57,7 @@ public class HttpMethods {
     private FollowService followService;
     private SocialService socialService;
     private UserService userService;
+    private ArticleService articleService;
 
     //构造方法私有
     private HttpMethods() {
@@ -86,11 +89,14 @@ public class HttpMethods {
         followService = retrofit.create(FollowService.class);
         socialService = retrofit.create(SocialService.class);
         userService = retrofit.create(UserService.class);
+        articleService = retrofit.create(ArticleService.class);
     }
 
     public void sendFollowReq(int followStatus, Long id) {
 
     }
+
+
 
     //在访问HttpMethods时创建单例
     private static class SingletonHolder {
@@ -184,12 +190,26 @@ public class HttpMethods {
     }
 
 
+    public void getMineSocial(Subscriber<SocialDetailList> subscriber) {
+        Observable observable = socialService.getMineSocial()
+                .map(new HttpResultFunc<SocialDetailList>());
+        toSubscribe(observable, subscriber);
+    }
+
 
     public void postLikeStatus(Subscriber<Like> subscriber,long socialId,int status) {
         Observable observable = socialService.postLike(status,socialId)
                 .map(new HttpResultFunc<Like>());
         toSubscribe(observable, subscriber);
     }
+    //====================Article==================
+    public void getPopularArticleList(Subscriber<ArticleListResult> subscriber, int pageIndex){
+        Observable observable = articleService.getPopularArticleList(pageIndex)
+                .map(new HttpResultFunc<ArticleListResult>());
+        toSubscribe(observable, subscriber);
+    }
+
+
 
     //====================User=====================
     public void updateUser(Subscriber<User> subscriber, String signture, String nickName, String avatar, String cover, String password){

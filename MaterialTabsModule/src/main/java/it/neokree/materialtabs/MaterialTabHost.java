@@ -1,27 +1,19 @@
 package it.neokree.materialtabs;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-
-import it.neokree.materialtabs.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -350,4 +342,7 @@ public class MaterialTabHost extends RelativeLayout implements View.OnClickListe
         }
 
     }
+    public int getTabCount(){
+        return tabs.size();
+    };
 }

@@ -65,10 +65,10 @@
             android:name=".activity.sign.SignUpFullInfoActivity"
             android:theme="@style/NoActionBarStyle">
         </activity>
-         <activity
-         android:name=".activity.MainActivity"
-         android:theme="@style/StateBarStyle">
-         </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/StateBarStyle">
+        </activity>
         <activity android:name=".activity.CourseDetailInfoActivity">
         </activity>
         <activity
@@ -80,9 +80,13 @@
         </activity>
         <activity android:name=".activity.CommentActivity">
         </activity>
-         <activity android:name=".activity.personcenter.SettingActivity">
-         </activity>
+        <activity android:name=".activity.personcenter.SettingActivity">
+        </activity>
         <activity android:name=".activity.personcenter.FollowsActivity">
+        </activity>
+        <activity android:name=".activity.ArticleDetailActivity">
+        </activity>
+        <activity android:name=".activity.PhotoPreviewActivity">
         </activity>
     </application>
 

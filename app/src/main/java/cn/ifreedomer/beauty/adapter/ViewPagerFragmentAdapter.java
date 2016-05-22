@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.ifreedomer.beauty.R;
+
 /**
  * @author:eavawu
  * @date: 5/3/16.
@@ -20,6 +22,7 @@ public class ViewPagerFragmentAdapter extends MainFragmentPagerAdapter {
     public ViewPagerFragmentAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
         this.fragments = fragments;
+
     }
 
     public Fragment getItem(int num) {
@@ -31,18 +34,39 @@ public class ViewPagerFragmentAdapter extends MainFragmentPagerAdapter {
         return fragments.size();
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//        // Generate title based on item position
+//        // return tabTitles[position];
+//
+//        // getDrawable(int i) is deprecated, use getDrawable(int i, Theme theme) for min SDK >=21
+//        // or ContextCompat.getDrawable(Context context, int id) if you want support for older versions.
+//        // Drawable image = context.getResources().getDrawable(iconIds[position], context.getTheme());
+//        // Drawable image = context.getResources().getDrawable(imageResId[position]);
+//
+//        Drawable image = ContextCompat.getDrawable(context, getIcon(position));
+//        image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+//        SpannableString sb = new SpannableString(" ");
+//        ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);
+//        sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        return sb;
+//    }
+
+    /*
+    * It doesn't matter the color of the icons, but they must have solid colors
+    */
+    private int getIcon(int position) {
         switch (position) {
             case 0:
-                return "tab 1";
+                return (R.mipmap.tutourial_icon);
             case 1:
-                return "tab 2";
+                return R.mipmap.group_icon;
             case 2:
-                return "tab 3";
-            default:
-                return null;
+                return R.mipmap.share_icon;
+            case 3:
+                return R.mipmap.personal_center_icon;
         }
+        return R.mipmap.share_icon;
     }
 //    @Override
 //    public Object instantiateItem(ViewGroup container, int position) {

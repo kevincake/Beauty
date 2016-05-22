@@ -8,9 +8,11 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
+import cn.ifreedomer.beauty.activity.ArticleDetailActivity;
 import cn.ifreedomer.beauty.activity.CommentActivity;
 import cn.ifreedomer.beauty.activity.CourseDetailInfoActivity;
 import cn.ifreedomer.beauty.activity.MainActivity;
+import cn.ifreedomer.beauty.activity.PhotoPreviewActivity;
 import cn.ifreedomer.beauty.activity.VideoPlayerActivity;
 import cn.ifreedomer.beauty.activity.personcenter.EditProfileActivity;
 import cn.ifreedomer.beauty.activity.personcenter.SettingActivity;
@@ -20,6 +22,7 @@ import cn.ifreedomer.beauty.activity.sign.SignUpActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpFullInfoActivity;
 import cn.ifreedomer.beauty.constants.ImageConstants;
 import cn.ifreedomer.beauty.constants.IntentConstants;
+import cn.ifreedomer.beauty.entity.jsonbean.ArticleCommon;
 import cn.ifreedomer.beauty.entity.jsonbean.PopularCourseBean;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
 
@@ -117,4 +120,21 @@ public class IntentUtils {
         Intent intent = new Intent(ctx, SettingActivity.class);
         ctx.startActivity(intent);
     }
+
+    public static void startArticleDetailActivity(Activity ctx, ArticleCommon article) {
+        Intent intent = new Intent(ctx, ArticleDetailActivity.class);
+        intent.putExtra(IntentConstants.ARTICLE_COMMON,article);
+        ctx.startActivity(intent);
+    }
+
+    public static void startPreviewActivity(Activity ctx,String url) {
+        Intent intent = new Intent(ctx, PhotoPreviewActivity.class);
+        intent.putExtra(IntentConstants.BITMAP_URL,url);
+        ctx.startActivity(intent);
+    }
+//
+//    public static Bundle getSocialBundler(int type){
+//
+//    };
+
 }

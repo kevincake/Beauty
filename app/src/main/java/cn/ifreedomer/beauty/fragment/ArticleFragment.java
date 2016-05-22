@@ -9,13 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zhy.base.adapter.recyclerview.DividerItemDecoration;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.adapter.ArticleRecycleViewAdapter;
-import cn.ifreedomer.beauty.adapter.CourseRecycleViewAdapter;
+import cn.ifreedomer.beauty.decorate.VerticalSpaceItemDecoration;
+import cn.ifreedomer.beauty.entity.jsonbean.ArticleListResult;
+import cn.ifreedomer.beauty.network.HttpMethods;
+import cn.ifreedomer.beauty.subscribers.ProgressSubscriber;
+import cn.ifreedomer.beauty.subscribers.SubscriberOnNextListener;
+import cn.ifreedomer.beauty.util.DensityUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,18 +28,30 @@ public class ArticleFragment extends BaseFragment {
 
     @Bind(R.id.recycleview)
     RecyclerView recycleview;
-
     @Override
     public void initView() {
         ButterKnife.bind(this, rootView);
         recycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        CourseRecycleViewAdapter adapter = new ArticleRecycleViewAdapter(getActivity(),R.layout.fragment_article_rv_item, courseList);
-        recycleview.setAdapter(adapter);
+//        ArticleListResult articleListResult = new ArticleListResult();
+
+
+
+
+
     }
 
     @Override
     public void setData() {
-
+        SubscriberOnNextListener<ArticleListResult> articleSubcribe = new SubscriberOnNextListener<ArticleListResult>() {
+            @Override
+            public void onNext(ArticleListResult articleListResult) {
+                recycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recycleview.addItemDecoration(new VerticalSpaceItemDecoration(DensityUtil.dip2px(getActivity(),getResources().getDimension(R.dimen.dimen_dp10))));
+                ArticleRecycleViewAdapter adapter = new ArticleRecycleViewAdapter(getActivity(),R.layout.fragment_article_rv_item, articleListResult.getArticleList());
+                recycleview.setAdapter(adapter);
+            }
+        };
+        HttpMethods.getInstance().getPopularArticleList(new ProgressSubscriber<ArticleListResult>(articleSubcribe,getActivity()),1);
     }
 
     @Override

@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.adapter.SocialRvAdapter;
 import cn.ifreedomer.beauty.constants.HttpConstants;
+import cn.ifreedomer.beauty.constants.IntentConstants;
 import cn.ifreedomer.beauty.entity.SocialItem;
 import cn.ifreedomer.beauty.entity.jsonbean.Like;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
@@ -44,12 +45,18 @@ import cn.ifreedomer.beauty.util.LogUtil;
 public class SocialFragment extends BaseFragment implements OnClickSocialListener {
 
 
+
     @Bind(R.id.social_rv)
     RecyclerView socialRv;
     private SubscriberOnNextListener<Like> postLikeSub;
     private SocialDetailList socialDetailList;
     private SendLikeEvent sendLikeEvent;
     private SocialRvAdapter socialRvAdapter;
+    public static final int MINE_TYPE = 1;
+    public static final int COMMON_TYPE = 2;
+    private static int showType = COMMON_TYPE;
+
+
 
     @Override
     public void initView() {
@@ -74,7 +81,14 @@ public class SocialFragment extends BaseFragment implements OnClickSocialListene
             }
         };
 
-        HttpMethods.getInstance().getSocialDetails(new ProgressSubscriber<SocialDetailList>(getDetailsSub, getActivity()));
+       showType =   getArguments().getInt(IntentConstants.SOCIAL_SHOWTYPE);
+        if (showType==MINE_TYPE){
+            HttpMethods.getInstance().getMineSocial(new ProgressSubscriber<SocialDetailList>(getDetailsSub, getActivity()));
+        }else{
+            HttpMethods.getInstance().getSocialDetails(new ProgressSubscriber<SocialDetailList>(getDetailsSub, getActivity()));
+        }
+
+
 
         //like
         postLikeSub = new SubscriberOnNextListener<Like>() {
@@ -134,6 +148,8 @@ public class SocialFragment extends BaseFragment implements OnClickSocialListene
 
     }
 
+
+
     public SocialFragment() {
         // Required empty public constructor
     }
@@ -177,7 +193,7 @@ public class SocialFragment extends BaseFragment implements OnClickSocialListene
 
     @Override
     public void onClickBg(View view, SocialDetailBean socialDetailBean) {
-
+            IntentUtils.startPreviewActivity(getActivity(),socialDetailBean.getSocialEntity().getPic()[0]);
     }
 
     @Override

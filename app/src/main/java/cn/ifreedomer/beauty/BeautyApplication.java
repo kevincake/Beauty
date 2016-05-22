@@ -29,7 +29,7 @@ public class BeautyApplication extends Application {
         //初始化bugly
         initBugly();
         initFresco();
-        initSMSSDK();
+//        initSMSSDK();
         initFolder();
         initDataCache();
     }

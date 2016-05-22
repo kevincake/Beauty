@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.ifreedomer.beauty.activity.PhotoPreviewActivity">
+
+    <me.relex.photodraweeview.PhotoDraweeView
+        android:id="@+id/center_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:alpha="20"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:placeholderImage="@mipmap/default_course_bg"
+        fresco:placeholderImageScaleType="centerCrop"/>
+</RelativeLayout>

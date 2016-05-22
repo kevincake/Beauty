@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorHint">@color/gray_text_color</item>
+        <item name="android:colorBackground">@color/item_bg_color</item>
+        <item name="android:textColorPrimary">@color/WHITE</item>
     </style>
     <style name="StateBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -17,10 +19,15 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="colorAccent">@color/yellow</item>
     </style>
     <!-- 因为已经有toolBar 设置NoActionBar-->
     <style name="NoActionBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="MyCustomTabLayout" parent="AppTheme">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
     </style>
 </resources>

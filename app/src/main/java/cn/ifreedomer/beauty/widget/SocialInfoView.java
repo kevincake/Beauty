@@ -1,5 +1,6 @@
 package cn.ifreedomer.beauty.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
 import cn.ifreedomer.beauty.listener.OnClickSocialListener;
 import cn.ifreedomer.beauty.util.ImageUtil;
+import cn.ifreedomer.beauty.util.IntentUtils;
 import me.kaede.tagview.Tag;
 import me.kaede.tagview.TagView;
 
@@ -110,7 +112,7 @@ public class SocialInfoView extends RelativeLayout implements View.OnClickListen
     }
 
     @Override
-    @OnClick({R.id.likecount_tv, R.id.comment_count_tv, R.id.like_ib, R.id.comment_ib,R.id.more_iv})
+    @OnClick({R.id.likecount_tv, R.id.comment_count_tv, R.id.like_ib, R.id.comment_ib,R.id.more_iv,R.id.show_iv})
     public void onClick(View view) {
         if (onClickSocialListener == null) {
             return;
@@ -140,6 +142,10 @@ public class SocialInfoView extends RelativeLayout implements View.OnClickListen
             case R.id.comment_ib:
                 onClickSocialListener.onClickCommentIB(view, socialDetail);
 
+                break;
+            case R.id.show_iv:
+                IntentUtils.startPreviewActivity((Activity) context,socialDetail.getSocialEntity().getPic()[0]);
+//                onClickSocialListener.onClickBg(view,socialDetail);
                 break;
         }
 

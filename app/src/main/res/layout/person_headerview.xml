@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/course_bg_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:alpha="20"
+
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@mipmap/default_course_bg"
+            fresco:placeholderImageScaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:minHeight="100dp"
+            android:minWidth="100dp"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/person_avatar_sv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:alpha="20"
+                fresco:roundAsCircle="true"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:placeholderImage="@mipmap/head_img_f"
+                fresco:placeholderImageScaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="马可没有菠萝"
+                android:textColor="@color/WHITE"
+                android:textSize="20sp"/>
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/fans_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="3.follower"
+                    android:textColor="@color/WHITE"/>
+
+
+                <TextView
+                    android:id="@+id/mine_follows_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="follow.3"
+                    android:textColor="@color/WHITE"/>
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/paint_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/paint"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/ic_more"
+            android:id="@+id/person_more_iv"/>
+    </RelativeLayout>
+</LinearLayout>
