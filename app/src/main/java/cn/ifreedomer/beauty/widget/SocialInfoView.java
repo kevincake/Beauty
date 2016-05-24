@@ -21,7 +21,6 @@ import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
 import cn.ifreedomer.beauty.listener.OnClickSocialListener;
 import cn.ifreedomer.beauty.util.ImageUtil;
 import cn.ifreedomer.beauty.util.IntentUtils;
-import me.kaede.tagview.Tag;
 import me.kaede.tagview.TagView;
 
 /**
@@ -91,15 +90,15 @@ public class SocialInfoView extends RelativeLayout implements View.OnClickListen
         this.socialDetail = socialDetail;
         nameTv.setText(socialDetail.getUser().getName());
         ImageUtil.setFrescoImageView(socialDetail.getUser().getAvatar(), userCircleIv);
-        ImageUtil.setFrescoImageView(socialDetail.getSocialEntity().getPic()[0], showIv);
+//        ImageUtil.setFrescoImageView(socialDetail.getSocialEntity().getPic()[0], showIv);
         int likeCount = socialDetail.getLikeEntities() == null || socialDetail.getLikeEntities().isEmpty() ? 0 : socialDetail.getLikeEntities().size();
         int followCount = socialDetail.getCommentsEntities() == null || socialDetail.getCommentsEntities().isEmpty() ? 0 : socialDetail.getCommentsEntities().size();
         likecountTv.setText(String.format(context.getString(R.string.like_wrap), likeCount));
         commentCountTv.setText(String.format(context.getString(R.string.followcount_wrap), followCount));
         TagView tagView = tagviewContent;
         tagView.removeAllTags();
-        tagView.addTag(new Tag("风景", R.color.WHITE));
-        tagView.addTag(new Tag("旅游", R.color.WHITE));
+//        tagView.addTag(new Tag("风景", R.color.WHITE));
+//        tagView.addTag(new Tag("旅游", R.color.WHITE));
 
 
 //        int status = likeIb.isSelected()? HttpConstants.LIKE_STATUS:HttpConstants.UNLIKE_STATUS;

@@ -3,7 +3,7 @@
               android:id="@+id/root_view"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/item_bg_color"
+
               android:orientation="vertical">
 
     <RelativeLayout
@@ -21,7 +21,7 @@
             android:background="@mipmap/red_index_bg"
             android:gravity="center"
             android:text="1"
-            android:textColor="@color/text_color"
+
             android:textSize="20sp"/>
 
         <LinearLayout
@@ -37,12 +37,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="简单双腿交叉"
-                android:textColor="@color/WHITE"
+
                 android:textSize="25sp"/>
             <TextView
                 android:layout_marginTop="5dp"
                 android:text="菇凉，你缺我啊"
-                android:textColor="@color/WHITE"
+
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -57,7 +57,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:text="19分钟"
-            android:textColor="@color/text_color"/>
+             />
     </RelativeLayout>
 
 </LinearLayout>

@@ -138,6 +138,27 @@ public class SignSelectActivity extends BaseActivity implements View.OnClickList
                 IntentUtils.startSignUpActivity(this);
                 break;
             case R.id.login_btn:
+//                BP.pay(this, "购买", "一个化妆品", 0.02, true, new PListener() {
+//                    @Override
+//                    public void orderId(String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void succeed() {
+//
+//                    }
+//
+//                    @Override
+//                    public void fail(int i, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void unknow() {
+//
+//                    }
+//                });
                 IntentUtils.startSignInActivity(this);
                 break;
             case R.id.login_forget_tv:

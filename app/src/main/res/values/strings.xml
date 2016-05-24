@@ -96,6 +96,11 @@
     <string name="exit_str">在按一次退出应用</string>
     <string name="like_course">喜欢的课程</string>
     <string name="comments">我的动态</string>
+    <string name="deploy_course">发布课程</string>
+    <string name="deploy_comment">发布动态</string>
+    <string name="input_phone_num">请输入手机号</string>
+    <string name="account">账号</string>
+    <string name="password_signin">密码</string>
 </resources>
 
 

@@ -8,13 +8,6 @@
     <!--<include layout="@layout/common_toolbar"/>-->
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/sign_bg"/>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,74 +34,109 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:orientation="horizontal">-->
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/gray_bg_color"
-                android:src="@mipmap/ic_menu"/>
+        <!--<EditText-->
+        <!--android:id="@+id/phonenum_et"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+
+
+        <!--android:hint="@string/please_input_phonenum"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:gravity="left|center_vertical"-->
+
+        <!--/>-->
+        <!--</LinearLayout>-->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/usernameWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp">
 
             <EditText
                 android:id="@+id/phonenum_et"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/account"
+                android:inputType="phone"
+                android:paddingLeft="15dp"
+                android:text="18311362506"
+                android:textSize="15sp"/>
 
-                android:background="@color/white_gray_color"
-                android:hint="@string/please_input_phonenum"
-                android:paddingLeft="20dp"
-                android:gravity="left|center_vertical"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/gray_text_color"/>
-        </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
 
+
+        <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:id="@+id/password_rapper"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginTop="10dp">-->
+
+        <!--<EditText-->
+        <!--android:text="111111"-->
+        <!--android:paddingLeft="15dp"-->
+        <!--android:id="@+id/pwd_et"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="@string/password_signin"-->
+        <!--android:inputType="textPassword"-->
+
+        <!--android:textSize="15sp"/>-->
+
+        <!--</android.support.design.widget.TextInputLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:background="@color/white_gray_color"
-                android:src="@mipmap/ic_menu"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/password_rapper"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+               >
 
             <EditText
                 android:id="@+id/verifycode_et"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:background="@color/gray_bg_color"
-                android:paddingLeft="20dp"
-                android:gravity="left|center_vertical"
-                android:hint="@string/please_input_verifycode"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/gray_text_color"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_signin"
+                android:inputType="textPassword"
+                android:paddingLeft="15dp"
+                android:textSize="15sp"/>
 
+            </android.support.design.widget.TextInputLayout>
             <cn.ifreedomer.beauty.widget.TimeView
                 android:id="@+id/getcode_tv"
-                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/gray_bg_color"
                 android:drawableLeft="@mipmap/shu_line"
                 android:gravity="center"
                 android:text="获取验证码"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"/>
+
+                android:textSize="15sp"
+                android:background="@color/defaultBtnColor"/>
         </LinearLayout>
 
         <Button
             android:id="@+id/register_btn"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/getcode_shape"
             android:text="@string/register_title"
-            android:textColor="@color/text_color"/>
+            />
 
         <TextView
 
@@ -117,7 +145,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="@string/agree_ower_layer"
-            android:textColor="@color/text_color"/>
+            />
     </LinearLayout>
 
     <TextView
@@ -128,6 +156,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
         android:text="@string/login_now"
-        android:textColor="@color/text_color"/>
+        />
 
 </RelativeLayout>

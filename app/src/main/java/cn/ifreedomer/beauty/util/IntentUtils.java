@@ -11,6 +11,8 @@ import java.io.File;
 import cn.ifreedomer.beauty.activity.ArticleDetailActivity;
 import cn.ifreedomer.beauty.activity.CommentActivity;
 import cn.ifreedomer.beauty.activity.CourseDetailInfoActivity;
+import cn.ifreedomer.beauty.activity.DeployCommentActivity;
+import cn.ifreedomer.beauty.activity.DeployCourseActivity;
 import cn.ifreedomer.beauty.activity.MainActivity;
 import cn.ifreedomer.beauty.activity.PhotoPreviewActivity;
 import cn.ifreedomer.beauty.activity.VideoPlayerActivity;
@@ -49,9 +51,9 @@ public class IntentUtils {
         context.startActivity(intent);
     }
 
-    public static void startSignUpFullInfoActivity(String phone ,Activity context) {
+    public static void startSignUpFullInfoActivity(String phone, Activity context) {
         Intent intent = new Intent(context, SignUpFullInfoActivity.class);
-        intent.putExtra(IntentConstants.PHONE,phone);
+        intent.putExtra(IntentConstants.PHONE, phone);
         context.startActivity(intent);
     }
 
@@ -68,7 +70,7 @@ public class IntentUtils {
         return intent;
     }
 
-    public static Intent getSystemDefaultCropIntent(String localPath){
+    public static Intent getSystemDefaultCropIntent(String localPath) {
         Uri uri = Uri.fromFile(new File(localPath));
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
@@ -87,25 +89,25 @@ public class IntentUtils {
 
 
     public static void startMainActivity(Activity context) {
-        Intent intent = new Intent(context,MainActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
     public static void startCourseDetailActivity(Activity ctx, PopularCourseBean popularCourseBean) {
         Intent intent = new Intent(ctx, CourseDetailInfoActivity.class);
-        intent.putExtra(IntentConstants.POPCOURSE_BEAN,popularCourseBean);
+        intent.putExtra(IntentConstants.POPCOURSE_BEAN, popularCourseBean);
         ctx.startActivity(intent);
     }
 
     public static void startVideoPlayerActivity(Activity ctx, String url) {
         Intent intent = new Intent(ctx, VideoPlayerActivity.class);
-        intent.putExtra(IntentConstants.VIDEO_URL,url);
+        intent.putExtra(IntentConstants.VIDEO_URL, url);
         ctx.startActivity(intent);
     }
 
     public static void startCommentActivity(Activity ctx, SocialDetailBean socialDetailBean) {
         Intent intent = new Intent(ctx, CommentActivity.class);
-        intent.putExtra(IntentConstants.SOCIAL_BEAN,socialDetailBean);
+        intent.putExtra(IntentConstants.SOCIAL_BEAN, socialDetailBean);
         ctx.startActivity(intent);
 
     }
@@ -123,13 +125,23 @@ public class IntentUtils {
 
     public static void startArticleDetailActivity(Activity ctx, ArticleCommon article) {
         Intent intent = new Intent(ctx, ArticleDetailActivity.class);
-        intent.putExtra(IntentConstants.ARTICLE_COMMON,article);
+        intent.putExtra(IntentConstants.ARTICLE_COMMON, article);
         ctx.startActivity(intent);
     }
 
-    public static void startPreviewActivity(Activity ctx,String url) {
+    public static void startPreviewActivity(Activity ctx, String url) {
         Intent intent = new Intent(ctx, PhotoPreviewActivity.class);
-        intent.putExtra(IntentConstants.BITMAP_URL,url);
+        intent.putExtra(IntentConstants.BITMAP_URL, url);
+        ctx.startActivity(intent);
+    }
+
+    public static void startDeployCommentActivity(Activity ctx) {
+        Intent intent = new Intent(ctx, DeployCommentActivity.class);
+        ctx.startActivity(intent);
+    }
+
+    public static void startDeployCourseActivity(Activity ctx) {
+        Intent intent = new Intent(ctx, DeployCourseActivity.class);
         ctx.startActivity(intent);
     }
 //

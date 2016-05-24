@@ -7,5 +7,5 @@
     <dimen name="dimen_px250">25dp</dimen>
     <dimen name="dimen_pxf20">-10dp</dimen>
     <dimen name="dimen_pxf40">-15dp</dimen>
-    <dimen name="dimen_dp10">1dp</dimen>
+    <dimen name="dimen_dp10">10dp</dimen>
 </resources>

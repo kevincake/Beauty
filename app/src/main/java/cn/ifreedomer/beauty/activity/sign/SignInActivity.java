@@ -51,6 +51,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onNext(LogInResult logInResult) {
+                if (logInResult==null||logInResult.getUser()==null){return;}
                 AppManager.getInstance().saveUser(logInResult.getUser());
                 AppManager.getInstance().setToken(logInResult.getToken());
                 AppManager.getInstance().setLogin(true);

@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:name=".BeautyApplication"
@@ -16,6 +22,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name="c.b.a.A"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="c.b.a.B"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent"/>
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/NoActionbarFullScreen">
@@ -63,7 +79,7 @@
             android:theme="@style/StateBarStyle"/>
         <activity
             android:name=".activity.sign.SignUpFullInfoActivity"
-            android:theme="@style/NoActionBarStyle">
+            android:theme="@style/StateBarStyle">
         </activity>
         <activity
             android:name=".activity.MainActivity"
@@ -87,6 +103,13 @@
         <activity android:name=".activity.ArticleDetailActivity">
         </activity>
         <activity android:name=".activity.PhotoPreviewActivity">
+        </activity>
+        <activity android:name=".activity.DeployCommentActivity">
+        </activity>
+        <activity
+
+            android:theme="@style/AppTheme"
+            android:name=".activity.DeployCourseActivity">
         </activity>
     </application>
 

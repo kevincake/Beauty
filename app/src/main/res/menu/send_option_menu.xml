@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+
+        android:id="@+id/deploy_course"
+        android:title="@string/deploy_course"/>
+    <item
+        android:id="@+id/deploy_comment"
+        android:title="@string/deploy_comment"/>
+</menu>

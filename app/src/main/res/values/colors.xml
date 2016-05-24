@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#D9356E</color>
-    <color name="colorPrimaryDark">#AE2958</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="text_color">#ffffffff</color>
-    <color name="gray_text_color">#ff929292</color>
-    <color name="gray_lignt_text_color">#ffffff</color>
-    <color name="btn_common_color">#ff51514a</color>
-    <color name="item_bg_color">#171819</color>
-    <color name="gray_bg_color">#ff2f3031</color>
-    <color name="white_gray_color">#bb292922</color>
-    <color name="WHITE">#ffffffff</color>
-    <color name="article_white">#feffff</color>
-    <color name="toolbar_theme">#272727</color>
-    <color name="theme_color">#d1175a</color>
+    <color name="primary">#D9356E</color>
+    <color name="primary_dark">#AE2958</color>
+    <color name="primary_light">#F8BBD0</color>
+    <color name="accent">#FF4081</color>
+    <color name="primary_text">#FFFFFF</color>
+    <color name="secondary_text">#FFFFFF</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#CACBCC</color>
+    <color name="windowBackground">#101112</color>
+    <color name="white">#ffffff</color>
+    <color name="hintColor">#ff929292</color>
     <color name="yellow">#f5a623</color>
-    <color name="black">#FF000000</color>
-    <color name="blue">#268ce5</color>
+    <color name="popMenuBgColor">#212223</color>
+
+
+    <!--<color name="colorPrimary">#0097A7</color>-->
+    <!--<color name="colorPrimaryDark">#00BCD4</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <!--<color name="text_color">#ffffffff</color>-->
+    <!--<color name="gray_text_color">#ff929292</color>-->
+    <!--<color name="gray_lignt_text_color">#ffffff</color>-->
+    <!--<color name="btn_common_color">#ff51514a</color>-->
+    <!--<color name="item_bg_color">#171819</color>-->
+    <!--<color name="gray_bg_color">#ff2f3031</color>-->
+    <!--<color name="white_gray_color">#bb292922</color>-->
+    <!--<color name="WHITE">#ffffffff</color>-->
+    <!--<color name="article_white">#feffff</color>-->
+    <!--<color name="toolbar_theme">#272727</color>-->
+    <!--<color name="theme_color">#d1175a</color>-->
+    <!--<color name="yellow">#f5a623</color>-->
+    <!--<color name="black">#FF000000</color>-->
+    <!--<color name="blue">#268ce5</color>-->
 </resources>

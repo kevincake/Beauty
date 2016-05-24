@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import c.b.BP;
 import cn.ifreedomer.beauty.constants.Constants;
 import cn.ifreedomer.beauty.manager.DataCacheManager;
 import cn.ifreedomer.beauty.util.FileUtils;
@@ -29,9 +30,15 @@ public class BeautyApplication extends Application {
         //初始化bugly
         initBugly();
         initFresco();
-//        initSMSSDK();
+        initSMSSDK();
         initFolder();
         initDataCache();
+        initBmob();
+    }
+
+    private void initBmob() {
+        BP.init(instance,"2fd3026365bbabc89c318d76d9a99769");
+
     }
 
     private void initDataCache() {

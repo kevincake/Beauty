@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:background="@color/gray_bg_color"
+
               android:orientation="vertical">
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:text="订单"
-            android:textColor="@color/WHITE"
+
             android:textSize="15sp"/>
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:text="@string/collect"
-            android:textColor="@color/WHITE"
+
             android:textSize="15sp"/>
 
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:textColor="@color/WHITE"
+
             android:textSize="15sp"/>
 
 

@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="HuaGuoLiao"
 
-                android:textColor="@color/text_color"
+
                 android:textSize="15sp"/>
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dec.3.2015"
-                android:textColor="@color/gray_text_color"
+
                 android:textSize="10sp"/>
 
         </LinearLayout>
@@ -162,7 +162,7 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--android:gravity="center"-->
                 <!--android:text="By Eava.wu"-->
-                <!--android:textColor="@color/text_color"/>-->
+                <!-- />-->
         <!--</LinearLayout>-->
 
         <!--<RelativeLayout-->
@@ -183,7 +183,7 @@
                 <!--android:lines="1"-->
                 <!--android:text="喜欢"-->
                 <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/text_color"-->
+                <!-- -->
                 <!--android:textSize="12sp"/>-->
 
             <!--<TextView-->
@@ -196,7 +196,7 @@
                 <!--android:gravity="center"-->
                 <!--android:lines="1"-->
                 <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/text_color"-->
+                <!-- -->
                 <!--android:textSize="12sp"/>-->
         <!--</RelativeLayout>-->
 

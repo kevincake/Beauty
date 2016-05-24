@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/item_bg_color"
+
               android:orientation="vertical">
 
 
@@ -18,7 +18,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:text="本套课程是一套入门课程，欢迎分享"
-        android:textColor="@color/WHITE"
+
         android:textSize="15sp"/>
 
     <android.support.v7.widget.RecyclerView

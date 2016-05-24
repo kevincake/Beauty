@@ -1,16 +1,15 @@
 package cn.ifreedomer.beauty.fragment;
 
 
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 
 import com.zhy.base.adapter.recyclerview.DividerItemDecoration;
 
@@ -35,7 +34,6 @@ import cn.ifreedomer.beauty.notifycation.NotifycationManager;
 import cn.ifreedomer.beauty.notifycation.SendLikeEvent;
 import cn.ifreedomer.beauty.subscribers.ProgressSubscriber;
 import cn.ifreedomer.beauty.subscribers.SubscriberOnNextListener;
-import cn.ifreedomer.beauty.util.DensityUtil;
 import cn.ifreedomer.beauty.util.IntentUtils;
 import cn.ifreedomer.beauty.util.LogUtil;
 
@@ -116,19 +114,23 @@ public class SocialFragment extends BaseFragment implements OnClickSocialListene
     }
 
     private void showMenuPop(View anchorView) {
-        View view = View.inflate(getActivity(), R.layout.social_menu_more, null);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.findViewById(R.id.root_view).getLayoutParams();
-//        final PopupWindow popupWindow = new PopupWindow(view, DensityUtil.dip2px(getActivity(),getResources().getDimension(R.dimen.dimen_px250)),
-//                DensityUtil.dip2px(getActivity(),getResources().getDimension(R.dimen.dimen_px200)),true);
-
-
-        final PopupWindow popupWindow = new PopupWindow(view, layoutParams.width,
-                layoutParams.height, true);
-        ArrayList<String> items = new ArrayList<>();
-        popupWindow.setTouchable(true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAsDropDown(anchorView, DensityUtil.dip2px(getActivity(), getResources().getDimension(R.dimen.dimen_pxf20)), DensityUtil.dip2px(getActivity(), getResources().getDimension(R.dimen.dimen_pxf40)));
+        PopupMenu popupMenu = new PopupMenu(getActivity(), anchorView);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.person_more_menu, popupMenu.getMenu());
+        popupMenu.show();
+//        View view = View.inflate(getActivity(), R.layout.social_menu_more, null);
+//        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.findViewById(R.id.root_view).getLayoutParams();
+////        final PopupWindow popupWindow = new PopupWindow(view, DensityUtil.dip2px(getActivity(),getResources().getDimension(R.dimen.dimen_px250)),
+////                DensityUtil.dip2px(getActivity(),getResources().getDimension(R.dimen.dimen_px200)),true);
+//
+//
+//        final PopupWindow popupWindow = new PopupWindow(view, layoutParams.width,
+//                layoutParams.height, true);
+//        ArrayList<String> items = new ArrayList<>();
+//        popupWindow.setTouchable(true);
+//        popupWindow.setOutsideTouchable(true);
+//        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+//        popupWindow.showAsDropDown(anchorView, DensityUtil.dip2px(getActivity(), getResources().getDimension(R.dimen.dimen_pxf20)), DensityUtil.dip2px(getActivity(), getResources().getDimension(R.dimen.dimen_pxf40)));
 
 //        popupWindow.setWidth(500);
 

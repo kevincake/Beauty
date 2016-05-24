@@ -4,7 +4,7 @@
               xmlns:fresco="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="500dp"
-              android:background="@color/item_bg_color"
+
               android:orientation="vertical">
 
     <RelativeLayout
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="HuaGuoLiao"
 
-                android:textColor="@color/text_color"
+
                 android:textSize="15sp"/>
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dec.3.2015"
-                android:textColor="@color/gray_text_color"
+
                 android:textSize="10sp"/>
 
         </LinearLayout>
@@ -83,7 +83,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="@color/btn_common_color"
+
             android:src="@mipmap/button_like"/>
 
         <ImageButton
@@ -92,7 +92,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@color/btn_common_color"
+
             android:src="@mipmap/button_comment"/>
     </LinearLayout>
 
@@ -123,7 +123,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
             android:text="Eava.wu oter 100 like this"
-            android:textColor="@color/text_color"/>
+             />
     </LinearLayout>
 
     <LinearLayout
@@ -145,7 +145,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
             android:text="Eava.wu oter 100 like this"
-            android:textColor="@color/text_color"/>
+             />
     </LinearLayout>
 
     <LinearLayout
@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Eava.wu oter 100 like this"
-            android:textColor="@color/text_color"
+
             />
 
         <TextView
@@ -169,6 +169,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:text="Eava.wu oter 100 like this"
-            android:textColor="@color/gray_text_color"/>
+               />
     </LinearLayout>
 </LinearLayout>

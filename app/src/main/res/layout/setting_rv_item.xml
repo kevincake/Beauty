@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:background="@color/item_bg_color"
+
     android:orientation="horizontal">
 
 
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:background="@color/item_bg_color"
+
         android:orientation="horizontal">
 
         <ImageView
@@ -30,7 +30,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:text="通知"
-            android:textColor="@color/WHITE"
+
             android:textSize="15sp"/>
 
 
@@ -42,5 +42,5 @@
         android:layout_height="1px"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginLeft="50dp"
-        android:background="@color/gray_bg_color"/>
+        />
 </FrameLayout>

@@ -12,7 +12,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/item_bg_color"
+
         android:orientation="vertical"
         >
 
@@ -38,7 +38,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:text="@string/profile_picture"
-                android:textColor="@color/WHITE"
+
                 android:textSize="15sp"/>
 
 
@@ -67,7 +67,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:text="@string/cover_photo"
-                android:textColor="@color/WHITE"
+
                 android:textSize="15sp"/>
 
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/WHITE"
+
                 android:textSize="15sp"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/WHITE"
+
                 android:textSize="15sp"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/signture"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/WHITE"
+
                 android:textSize="15sp"/>
 
         </android.support.design.widget.TextInputLayout>

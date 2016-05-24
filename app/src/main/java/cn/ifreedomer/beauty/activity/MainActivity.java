@@ -23,10 +23,8 @@ import cn.ifreedomer.beauty.fragment.CourseFragment;
 import cn.ifreedomer.beauty.fragment.SocialFragment;
 import cn.ifreedomer.beauty.fragment.personcenter.PersonCenterFragment;
 import cn.ifreedomer.beauty.widget.IconTableView;
-import it.neokree.materialtabs.MaterialTab;
-import it.neokree.materialtabs.MaterialTabListener;
 
-public class MainActivity extends BaseActivity implements MaterialTabListener {
+public class MainActivity extends BaseActivity {
 
     @Bind(R.id.tabHost)
     TabLayout tabHost;
@@ -34,6 +32,7 @@ public class MainActivity extends BaseActivity implements MaterialTabListener {
     ViewPager pager;
     private ArrayList<Fragment> fragments = new ArrayList<>();
     Resources res = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +43,7 @@ public class MainActivity extends BaseActivity implements MaterialTabListener {
         initPageAndTabHost();
 
     }
+
     boolean isExit = false;
 
     @Override
@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity implements MaterialTabListener {
         ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), fragments);
         pager.setAdapter(pagerAdapter);
         tabHost.setupWithViewPager(pager);
-        for (int i=0;i<tabHost.getTabCount();i++){
+        for (int i = 0; i < tabHost.getTabCount(); i++) {
             IconTableView iconTableView = new IconTableView(this);
             iconTableView.setIcon(getIcon(i));
             tabHost.getTabAt(i).setCustomView(iconTableView);
@@ -89,7 +89,7 @@ public class MainActivity extends BaseActivity implements MaterialTabListener {
     private void initFragments() {
         fragments.add(new CourseFragment());
         Bundle bundle = new Bundle();
-        bundle.putInt(IntentConstants.SOCIAL_SHOWTYPE,SocialFragment.COMMON_TYPE);
+        bundle.putInt(IntentConstants.SOCIAL_SHOWTYPE, SocialFragment.COMMON_TYPE);
         SocialFragment socialFragment = new SocialFragment();
         socialFragment.setArguments(bundle);
         fragments.add(socialFragment);
@@ -97,6 +97,7 @@ public class MainActivity extends BaseActivity implements MaterialTabListener {
         fragments.add(new PersonCenterFragment());
 
     }
+
     private int getIcon(int position) {
         switch (position) {
             case 0:
@@ -112,33 +113,9 @@ public class MainActivity extends BaseActivity implements MaterialTabListener {
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-    }
-
-    @Override
-    public void onTabSelected(MaterialTab tab) {
-// when the tab is clicked the pager swipe content to the tab position
-        pager.setCurrentItem(tab.getPosition());
-//        getActionBarToolbar().set
-//        if (tab.getPosition() == 1&&mMenu!=null) {
-//            getMenuInflater().inflate(R.menu.search_menu, mMenu);
-//
-//
-//        }else if(tab.getPosition() == 0&&mMenu!=null){
-//            getMenuInflater().inflate(R.menu.menu_add,mMenu);
-////            mActionBarToolbar.setMenu(mMenu);
-//        }
-    }
-
-    @Override
-    public void onTabReselected(MaterialTab tab) {
-    }
-
-    @Override
-    public void onTabUnselected(MaterialTab tab) {
     }
 }
