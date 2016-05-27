@@ -129,9 +129,10 @@ public class IntentUtils {
         ctx.startActivity(intent);
     }
 
-    public static void startPreviewActivity(Activity ctx, String url) {
+    public static void startPreviewActivity(Activity ctx, String url,int type) {
         Intent intent = new Intent(ctx, PhotoPreviewActivity.class);
         intent.putExtra(IntentConstants.BITMAP_URL, url);
+        intent.putExtra(IntentConstants.URI_TYPE,type);
         ctx.startActivity(intent);
     }
 

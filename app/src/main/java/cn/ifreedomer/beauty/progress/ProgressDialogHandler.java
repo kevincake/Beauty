@@ -28,10 +28,20 @@ public class ProgressDialogHandler extends Handler {
         this.cancelable = cancelable;
     }
 
+    public void showProgressDialog(String title){
+        initProgressDialog();
+        if (pd!=null){
+            pd.setTitle(title);
+        }
+    }
+    public void showProgressDialog(){
+        initProgressDialog();
+
+    }
+
     private void initProgressDialog(){
         if (pd == null) {
             pd = new ProgressDialog(context);
-
             pd.setCancelable(cancelable);
 
             if (cancelable) {
@@ -49,7 +59,7 @@ public class ProgressDialogHandler extends Handler {
         }
     }
 
-    private void dismissProgressDialog(){
+    public void dismissProgressDialog(){
         if (pd != null) {
             pd.dismiss();
             pd = null;

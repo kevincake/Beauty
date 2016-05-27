@@ -2,12 +2,19 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
-             tools:context="cn.ifreedomer.beauty.fragment.SocialFragment">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/social_rv"
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipe_layout"
+        app:srl_direction="both"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/social_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 </FrameLayout>

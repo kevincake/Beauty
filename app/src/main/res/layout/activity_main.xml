@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:fab="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
@@ -23,13 +24,207 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/float_btn"
-            android:src="@mipmap/ic_menu_camera"
-            android:layout_gravity="bottom|right"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+
+        <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginRight="10dp">-->
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/layout1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="喝咯w"/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/float_btn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:src="@mipmap/ic_menu_camera"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/layout2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="喝咯w"/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:src="@mipmap/ic_menu_camera"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/layout3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="喝咯w"/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:src="@mipmap/ic_menu_camera"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="喝咯w"/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:src="@mipmap/ic_menu_camera"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="喝咯w"/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:src="@mipmap/ic_menu_camera"/>-->
+        <!--</LinearLayout>-->
+
+
+        <!--</FrameLayout>-->
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/multiple_actions"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="10dp"
+            fab:fab_addButtonColorNormal="@color/primary"
+            fab:fab_addButtonColorPressed="@color/primary"
+            fab:fab_labelStyle="@style/menu_labels_style">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/deploy_comment_fb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_icon="@mipmap/ic_menu_camera"
+                fab:fab_colorNormal="@color/primary"
+                fab:fab_colorPressed="@color/primary"
+                fab:fab_title="@string/deploy_coment"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/deploy_article_fb"
+                android:foregroundGravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_icon="@mipmap/ic_person_center"
+                fab:fab_colorNormal="@color/primary"
+                fab:fab_colorPressed="@color/primary"
+                fab:fab_title="@string/deploy_article"/>
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+        <!--<com.getbase.floatingactionbutton.FloatingActionsMenu-->
+        <!--android:id="@+id/multiple_actions"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--fab:fab_addButtonColorNormal="@color/white"-->
+        <!--fab:fab_addButtonColorPressed="@color/white_pressed"-->
+        <!--fab:fab_addButtonPlusIconColor="@color/yellow"-->
+        <!--fab:fab_addButtonSize="mini"-->
+        <!--fab:fab_labelStyle="@style/menu_labels_style"-->
+        <!--fab:fab_labelsPosition="right">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_marginLeft="-50dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="hello world"/>-->
+
+        <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
+        <!--android:id="@+id/action_a"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--fab:fab_colorNormal="@color/white"-->
+        <!--fab:fab_colorPressed="@color/white_pressed"-->
+        <!--fab:fab_title="Action A"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_marginLeft="-50dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="hello world"/>-->
+
+        <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
+        <!--android:id="@+id/action_b"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--fab:fab_colorNormal="@color/white"-->
+        <!--fab:fab_colorPressed="@color/white_pressed"-->
+        <!--fab:fab_title="Action A"/>-->
+        <!--</LinearLayout>-->
+        <!--</com.getbase.floatingactionbutton.FloatingActionsMenu>-->
     </FrameLayout>
 </LinearLayout>

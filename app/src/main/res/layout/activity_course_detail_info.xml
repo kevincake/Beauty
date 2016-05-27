@@ -5,7 +5,7 @@
 
               android:orientation="vertical">
 
-
+    <!--<include layout="@layout/toolbar_actionbar_with_headerbar"/>-->
     <cn.ifreedomer.beauty.widget.CourseInfoView
         android:id="@+id/course_info_view"
         android:layout_width="match_parent"

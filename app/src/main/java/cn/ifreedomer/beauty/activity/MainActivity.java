@@ -3,16 +3,22 @@ package cn.ifreedomer.beauty.activity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Process;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.Toast;
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ifreedomer.beauty.R;
 import cn.ifreedomer.beauty.activity.base.ActivityStackManager;
 import cn.ifreedomer.beauty.activity.base.BaseActivity;
@@ -22,6 +28,7 @@ import cn.ifreedomer.beauty.fragment.ArticleFragment;
 import cn.ifreedomer.beauty.fragment.CourseFragment;
 import cn.ifreedomer.beauty.fragment.SocialFragment;
 import cn.ifreedomer.beauty.fragment.personcenter.PersonCenterFragment;
+import cn.ifreedomer.beauty.util.IntentUtils;
 import cn.ifreedomer.beauty.widget.IconTableView;
 
 public class MainActivity extends BaseActivity {
@@ -30,6 +37,14 @@ public class MainActivity extends BaseActivity {
     TabLayout tabHost;
     @Bind(R.id.pager)
     ViewPager pager;
+    @Bind(R.id.deploy_comment_fb)
+    FloatingActionButton deployCommentFb;
+    @Bind(R.id.deploy_article_fb)
+    FloatingActionButton deployArticleFb;
+    @Bind(R.id.multiple_actions)
+    FloatingActionsMenu multipleActions;
+    //    @Bind(R.id.action_b)
+//    FloatingActionButton actionB;
     private ArrayList<Fragment> fragments = new ArrayList<>();
     Resources res = null;
 
@@ -41,6 +56,12 @@ public class MainActivity extends BaseActivity {
         res = getResources();
         initFragments();
         initPageAndTabHost();
+//        actionB.setTitle("HELLO WORLD");
+        initVoidMenu();
+
+    }
+
+    private void initVoidMenu() {
 
     }
 
@@ -64,7 +85,7 @@ public class MainActivity extends BaseActivity {
 
             } else {
                 ActivityStackManager.getScreenManager().popAllActivity();
-                android.os.Process.killProcess(android.os.Process.myPid());
+                Process.killProcess(Process.myPid());
                 System.exit(0);
                 //
             }
@@ -118,4 +139,20 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.unbind(this);
     }
+
+    @OnClick({R.id.deploy_comment_fb, R.id.deploy_article_fb})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.deploy_comment_fb:
+                IntentUtils.startDeployCommentActivity(this);
+                break;
+            case R.id.deploy_article_fb:
+                IntentUtils.startDeployCourseActivity(this);
+                break;
+        }
+    }
+
+//    @OnClick(R.id.action_b)
+//    public void onClick() {
+//    }
 }

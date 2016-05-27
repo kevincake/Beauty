@@ -1,6 +1,7 @@
 package cn.ifreedomer.beauty.entity.jsonbean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author:eavawu
@@ -11,11 +12,20 @@ public class Social implements Serializable{
     private Long userId;
 
     private Long id;
-    private String pic[];
+    private List<String> pic;
     private String content;
     private Long deployTime;
     private int type; //类型
     private String url;
+    public List<String> getPic() {
+        return pic;
+    }
+
+    public void setPic(List<String> pic) {
+        this.pic = pic;
+    }
+
+
 
     public Long getUserId() {
         return userId;
@@ -33,13 +43,8 @@ public class Social implements Serializable{
         this.id = id;
     }
 
-    public String[] getPic() {
-        return pic;
-    }
 
-    public void setPic(String[] pic) {
-        this.pic = pic;
-    }
+
 
     public String getContent() {
         return content;

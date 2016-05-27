@@ -11,20 +11,23 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 import com.zhy.base.adapter.recyclerview.DividerItemDecoration;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.ifreedomer.beauty.R;
+import cn.ifreedomer.beauty.activity.PhotoPreviewActivity;
 import cn.ifreedomer.beauty.adapter.SocialRvAdapter;
 import cn.ifreedomer.beauty.constants.HttpConstants;
 import cn.ifreedomer.beauty.constants.IntentConstants;
-import cn.ifreedomer.beauty.entity.SocialItem;
 import cn.ifreedomer.beauty.entity.jsonbean.Like;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailList;
@@ -40,12 +43,13 @@ import cn.ifreedomer.beauty.util.LogUtil;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SocialFragment extends BaseFragment implements OnClickSocialListener {
-
+public class SocialFragment extends BaseFragment implements OnClickSocialListener, SwipyRefreshLayout.OnRefreshListener {
 
 
     @Bind(R.id.social_rv)
     RecyclerView socialRv;
+    @Bind(R.id.swipe_layout)
+    SwipyRefreshLayout swipeLayout;
     private SubscriberOnNextListener<Like> postLikeSub;
     private SocialDetailList socialDetailList;
     private SendLikeEvent sendLikeEvent;
@@ -53,39 +57,55 @@ public class SocialFragment extends BaseFragment implements OnClickSocialListene
     public static final int MINE_TYPE = 1;
     public static final int COMMON_TYPE = 2;
     private static int showType = COMMON_TYPE;
-
+    private int curPageIndex = 1;
+    private List<SocialDetailBean> socialDetailBeanList = new ArrayList<>();
+    private SwipyRefreshLayoutDirection currentDirection = SwipyRefreshLayoutDirection.BOTTOM;
+    private SubscriberOnNextListener<SocialDetailList> getDetailsSub;
 
 
     @Override
     public void initView() {
         ButterKnife.bind(this, rootView);
         NotifycationManager.getInstance().register(this);
-        ArrayList<SocialItem> items = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            items.add(new SocialItem());
-        }
+//        swipeLayout.setColorSchemeColors(android.R.color.white,
+//                android.R.color.holo_green_light,
+//                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        swipeLayout.setOnRefreshListener(this);
         ;
+        socialRvAdapter = new SocialRvAdapter(getActivity(), 0, socialDetailBeanList, SocialFragment.this);
+        socialRv.setAdapter(socialRvAdapter);
+        socialRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        socialRv.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
 
-        SubscriberOnNextListener<SocialDetailList> getDetailsSub = new SubscriberOnNextListener<SocialDetailList>() {
+
+
+        getDetailsSub = new SubscriberOnNextListener<SocialDetailList>() {
             @Override
             public void onNext(SocialDetailList socialDetailList) {
                 if (socialDetailList == null || socialDetailList.getSocialDetails() == null) return;
                 LogUtil.info("getDetailsSub", socialDetailList.toString());
-                SocialFragment.this.socialDetailList = socialDetailList;
-                socialRvAdapter = new SocialRvAdapter(getActivity(), 0, socialDetailList.getSocialDetails(), SocialFragment.this);
-                socialRv.setAdapter(socialRvAdapter);
-                socialRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-                socialRv.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+                if (currentDirection == SwipyRefreshLayoutDirection.BOTTOM) {
+                    curPageIndex = curPageIndex+1;
+                    socialDetailBeanList.addAll(socialDetailList.getSocialDetails());
+                } else {
+
+                    socialDetailBeanList.clear();
+                    socialDetailBeanList.addAll(socialDetailList.getSocialDetails());
+                }
+                swipeLayout.setRefreshing(false);
+                socialRvAdapter.notifyDataSetChanged();
+//                SocialFragment.this.socialDetailList = socialDetailList;
+
             }
         };
 
-       showType =   getArguments().getInt(IntentConstants.SOCIAL_SHOWTYPE);
-        if (showType==MINE_TYPE){
+        showType = getArguments().getInt(IntentConstants.SOCIAL_SHOWTYPE);
+        if (showType == MINE_TYPE) {
+            swipeLayout.setEnabled(false);
             HttpMethods.getInstance().getMineSocial(new ProgressSubscriber<SocialDetailList>(getDetailsSub, getActivity()));
-        }else{
+        } else {
             HttpMethods.getInstance().getSocialDetails(new ProgressSubscriber<SocialDetailList>(getDetailsSub, getActivity()));
         }
-
 
 
         //like
@@ -151,7 +171,6 @@ public class SocialFragment extends BaseFragment implements OnClickSocialListene
     }
 
 
-
     public SocialFragment() {
         // Required empty public constructor
     }
@@ -195,11 +214,37 @@ public class SocialFragment extends BaseFragment implements OnClickSocialListene
 
     @Override
     public void onClickBg(View view, SocialDetailBean socialDetailBean) {
-            IntentUtils.startPreviewActivity(getActivity(),socialDetailBean.getSocialEntity().getPic()[0]);
+        if (socialDetailBean.getSocialEntity().getPic().size() > 0) {
+            IntentUtils.startPreviewActivity(getActivity(), socialDetailBean.getSocialEntity().getPic().get(0), PhotoPreviewActivity.NETWORK);
+        }
+
     }
 
     @Override
     public void onClickMore(View view, SocialDetailBean socialDetailBean) {
         showMenuPop(view);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+
+    @Override
+    public void onRefresh(SwipyRefreshLayoutDirection direction) {
+        currentDirection = direction;
+        if (direction == SwipyRefreshLayoutDirection.BOTTOM) {
+//            curPageIndex = curPageIndex + 1;
+            HttpMethods.getInstance().getSocialDetails(new ProgressSubscriber<SocialDetailList>(getDetailsSub, getActivity(), false));
+        } else {
+            curPageIndex = 1;
+            HttpMethods.getInstance().getSocialDetails(new ProgressSubscriber<SocialDetailList>(getDetailsSub, getActivity(), false));
+        }
+
+
     }
 }

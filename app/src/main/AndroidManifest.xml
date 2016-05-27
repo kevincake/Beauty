@@ -22,16 +22,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name="c.b.a.A"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
-        <activity
-            android:name="c.b.a.B"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent"/>
+        
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/NoActionbarFullScreen">
@@ -49,9 +40,7 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="570293ef67e58e5aa2000edc"/>
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="Channel ID"/>
+
         <!-- ===========bugly============= -->
         <!-- 配置APP ID -->
         <meta-data
@@ -100,17 +89,33 @@
         </activity>
         <activity android:name=".activity.personcenter.FollowsActivity">
         </activity>
-        <activity android:name=".activity.ArticleDetailActivity">
+        <activity
+            android:name=".activity.ArticleDetailActivity"
+            android:theme="@style/whiteAppTheme"
+            >
         </activity>
-        <activity android:name=".activity.PhotoPreviewActivity">
-        </activity>
-        <activity android:name=".activity.DeployCommentActivity">
+        <activity android:name=".activity.PhotoPreviewActivity"
+            >
         </activity>
         <activity
-
-            android:theme="@style/AppTheme"
-            android:name=".activity.DeployCourseActivity">
+            android:name=".activity.DeployCommentActivity"
+            android:theme="@style/whiteAppTheme">
         </activity>
+        <activity
+            android:name=".activity.DeployCourseActivity"
+            android:theme="@style/whiteAppTheme">
+        </activity>
+        <!-- Image Selector Entry -->
+        <activity
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activity.shop.GoodsListActivity">
+        </activity>
+
+
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}"/>
     </application>
 
 </manifest>

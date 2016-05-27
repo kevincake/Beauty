@@ -14,4 +14,6 @@ public class IntentConstants {
     public static final String SOCIAL_SHOWTYPE = "social_show_type";
     public static final String BITMAP = "bitmap";
     public static final String BITMAP_URL = "bitmap_url";
+    public static final int NETWORK = 1;
+    public static final String URI_TYPE = "url_type";
 }

@@ -9,136 +9,135 @@
 
     tools:context="cn.ifreedomer.beauty.fragment.personcenter.PersonCenterFragment">
 
-    <!--<com.github.ksoichiro.android.observablescrollview.ObservableScrollView-->
-    <!--android:id="@+id/ob_scrollView"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent" />-->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="240dp">
 
-
-
-        <RelativeLayout
-            app:layout_scrollFlags="scroll|enterAlways"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="240dp">
+            android:layout_height="match_parent"
+            app:contentScrim="#30469b"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/course_bg_iv"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:alpha="20"
-
-                fresco:actualImageScaleType="centerCrop"
-                fresco:placeholderImage="@mipmap/default_course_bg"
-                fresco:placeholderImageScaleType="centerCrop"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:minHeight="100dp"
-                android:minWidth="100dp"
-                android:orientation="vertical">
+                android:layout_height="240dp"
+                >
 
                 <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/person_avatar_sv"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:id="@+id/course_bg_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:alpha="20"
-                    fresco:actualImageScaleType="centerCrop"
-                    fresco:placeholderImage="@mipmap/head_img_f"
-                    fresco:placeholderImageScaleType="centerCrop"
-                    fresco:roundAsCircle="true"/>
 
-                <TextView
-                    android:id="@+id/name_tv"
+                    fresco:actualImageScaleType="centerCrop"
+                    fresco:placeholderImage="@mipmap/default_course_bg"
+                    fresco:placeholderImageScaleType="centerCrop"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:minHeight="100dp"
+                    android:minWidth="100dp"
+                    android:orientation="vertical">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/person_avatar_sv"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:alpha="20"
+                        fresco:actualImageScaleType="centerCrop"
+                        fresco:placeholderImage="@mipmap/head_img_f"
+                        fresco:placeholderImageScaleType="centerCrop"
+                        fresco:roundAsCircle="true"/>
+
+                    <TextView
+                        android:id="@+id/name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="马可没有菠萝"
+
+                        android:textSize="20sp"/>
+
+                    <FrameLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/fans_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:text="3.follower"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/mine_follows_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:text="follow.3"
+                            />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/paint_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:text="马可没有菠萝"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/paint"/>
 
-                    android:textSize="20sp"/>
-
-                <FrameLayout
-                    android:layout_width="150dp"
+                <ImageView
+                    android:id="@+id/person_more_iv"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    >
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/ic_more"/>
 
-                    <TextView
-                        android:id="@+id/fans_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:text="3.follower"
-                        />
+                <ImageView
+                    android:id="@+id/send_iv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_send"/>
+            </RelativeLayout>
 
-
-                    <TextView
-                        android:id="@+id/mine_follows_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="follow.3"
-                        />
-
-                </FrameLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/paint_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@mipmap/paint"/>
-
-            <ImageView
-                android:id="@+id/person_more_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@mipmap/ic_more"/>
-
-            <ImageView
-                android:id="@+id/send_iv"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_send"/>
-        </RelativeLayout>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabHost_person"
-            style="@style/MyCustomTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-
-            />
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabHost_person"
+                style="@style/MyCustomTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                />
+        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <android.support.v4.view.ViewPager
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/viewpager_person"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_person"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </android.support.design.widget.CoordinatorLayout>

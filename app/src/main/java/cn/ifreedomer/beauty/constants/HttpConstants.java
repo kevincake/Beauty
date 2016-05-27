@@ -35,7 +35,7 @@ public class HttpConstants {
     public static final String SIGN_UP = HttpConstants.SIGN+"signUp";
 
 
-    public static final String SOCIAL_PATH = "/social";
+    public static final String SOCIAL_PATH = "social";
     public static final String GET_SOCIALS = SOCIAL_PATH+ "/getSocials";
     public static final String LIKE_SOCIAL = SOCIAL_PATH+ "/like";
 
@@ -52,4 +52,6 @@ public class HttpConstants {
     public static final String GET_FOLLOWLIST =FOLLOW+ "getFollowList";
     public static final String PAGEINDEX = "pageIndex";
     public static final String GET_MINE_SOCIAL =SOCIAL_PATH+ "/getMineSocial";
+    public static final String DEPLOY_SOCIAL = SOCIAL_PATH + "/deploySocial";
+    public static final int SOCIAL_TYPE = 1;
 }

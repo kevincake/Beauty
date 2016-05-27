@@ -17,10 +17,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifreedomer.beauty.R;
+import cn.ifreedomer.beauty.activity.PhotoPreviewActivity;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
 import cn.ifreedomer.beauty.listener.OnClickSocialListener;
 import cn.ifreedomer.beauty.util.ImageUtil;
 import cn.ifreedomer.beauty.util.IntentUtils;
+import cn.ifreedomer.beauty.util.ToastUtil;
 import me.kaede.tagview.TagView;
 
 /**
@@ -90,7 +92,12 @@ public class SocialInfoView extends RelativeLayout implements View.OnClickListen
         this.socialDetail = socialDetail;
         nameTv.setText(socialDetail.getUser().getName());
         ImageUtil.setFrescoImageView(socialDetail.getUser().getAvatar(), userCircleIv);
-//        ImageUtil.setFrescoImageView(socialDetail.getSocialEntity().getPic()[0], showIv);
+        if (socialDetail.getSocialEntity().getPic()!=null&&socialDetail.getSocialEntity().getPic().size()>0){
+            ImageUtil.setFrescoImageView(socialDetail.getSocialEntity().getPic().get(0), showIv);
+        }else{
+            showIv.setVisibility(View.GONE);
+        }
+
         int likeCount = socialDetail.getLikeEntities() == null || socialDetail.getLikeEntities().isEmpty() ? 0 : socialDetail.getLikeEntities().size();
         int followCount = socialDetail.getCommentsEntities() == null || socialDetail.getCommentsEntities().isEmpty() ? 0 : socialDetail.getCommentsEntities().size();
         likecountTv.setText(String.format(context.getString(R.string.like_wrap), likeCount));
@@ -143,7 +150,12 @@ public class SocialInfoView extends RelativeLayout implements View.OnClickListen
 
                 break;
             case R.id.show_iv:
-                IntentUtils.startPreviewActivity((Activity) context,socialDetail.getSocialEntity().getPic()[0]);
+                if (socialDetail.getSocialEntity().getPic().size()>0){
+                    IntentUtils.startPreviewActivity((Activity) context,socialDetail.getSocialEntity().getPic().get(0), PhotoPreviewActivity.NETWORK);
+                }else{
+                    ToastUtil.showTextToast(context,getContext().getString(R.string.no_pic_preview));
+                }
+
 //                onClickSocialListener.onClickBg(view,socialDetail);
                 break;
         }

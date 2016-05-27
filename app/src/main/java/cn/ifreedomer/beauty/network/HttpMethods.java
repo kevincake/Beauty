@@ -21,6 +21,7 @@ import cn.ifreedomer.beauty.entity.jsonbean.IsPhoneRegister;
 import cn.ifreedomer.beauty.entity.jsonbean.Like;
 import cn.ifreedomer.beauty.entity.jsonbean.LogInResult;
 import cn.ifreedomer.beauty.entity.jsonbean.CourseList;
+import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailBean;
 import cn.ifreedomer.beauty.entity.jsonbean.SocialDetailList;
 import cn.ifreedomer.beauty.manager.AppManager;
 import cn.ifreedomer.beauty.retrofitservice.ArticleService;
@@ -47,7 +48,7 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    public static final String BASE_URL = "http://192.168.1.103:8080/";
+    public static final String BASE_URL = "http://115.28.38.189:8080/Beauty/";
 
     private static final int DEFAULT_TIMEOUT = 5;
 
@@ -95,7 +96,6 @@ public class HttpMethods {
     public void sendFollowReq(int followStatus, Long id) {
 
     }
-
 
 
     //在访问HttpMethods时创建单例
@@ -176,14 +176,22 @@ public class HttpMethods {
     }
 
 
-    public void getFollowList(Subscriber<FollowListResult> subscriber){
+    public void getFollowList(Subscriber<FollowListResult> subscriber) {
         Observable observable = followService.getFollowList()
                 .map(new HttpResultFunc<FollowListResult>());
         toSubscribe(observable, subscriber);
     }
 
     //=====================social===============
-    public void getSocialDetails(Subscriber<SocialDetailList> subscriber){
+
+    public void deployComment(Subscriber<SocialDetailBean> subscriber, String content, int type ,String[] pic) {
+        Observable observable = socialService.deploySocial(content, type ,pic)
+        .map(new HttpResultFunc<SocialDetailBean>());
+        toSubscribe(observable, subscriber);
+    }
+
+
+    public void getSocialDetails(Subscriber<SocialDetailList> subscriber) {
         Observable observable = socialService.getSocialDetails()
                 .map(new HttpResultFunc<SocialDetailList>());
         toSubscribe(observable, subscriber);
@@ -197,35 +205,33 @@ public class HttpMethods {
     }
 
 
-    public void postLikeStatus(Subscriber<Like> subscriber,long socialId,int status) {
-        Observable observable = socialService.postLike(status,socialId)
+    public void postLikeStatus(Subscriber<Like> subscriber, long socialId, int status) {
+        Observable observable = socialService.postLike(status, socialId)
                 .map(new HttpResultFunc<Like>());
         toSubscribe(observable, subscriber);
     }
+
     //====================Article==================
-    public void getPopularArticleList(Subscriber<ArticleListResult> subscriber, int pageIndex){
+    public void getPopularArticleList(Subscriber<ArticleListResult> subscriber, int pageIndex) {
         Observable observable = articleService.getPopularArticleList(pageIndex)
                 .map(new HttpResultFunc<ArticleListResult>());
         toSubscribe(observable, subscriber);
     }
 
 
-
     //====================User=====================
-    public void updateUser(Subscriber<User> subscriber, String signture, String nickName, String avatar, String cover, String password){
+    public void updateUser(Subscriber<User> subscriber, String signture, String nickName, String avatar, String cover, String password) {
 
         Map<String, String> params = new LinkedHashMap<>();
         params.put(HttpConstants.NAME, nickName);
         params.put(HttpConstants.AVATAR, avatar);
-        params.put(HttpConstants.COVER,cover);
+        params.put(HttpConstants.COVER, cover);
         params.put(HttpConstants.PASSWORD, password);
-        params.put(HttpConstants.SIGNTURE,signture);
+        params.put(HttpConstants.SIGNTURE, signture);
         Observable observable = userService.updateUser(params)
                 .map(new HttpResultFunc<User>());
         toSubscribe(observable, subscriber);
     }
-
-
 
 
     private <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
@@ -234,7 +240,6 @@ public class HttpMethods {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s);
     }
-
 
 
     /**

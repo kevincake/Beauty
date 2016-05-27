@@ -46,7 +46,7 @@ public class ArticleFragment extends BaseFragment {
             @Override
             public void onNext(ArticleListResult articleListResult) {
                 recycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
-                recycleview.addItemDecoration(new VerticalSpaceItemDecoration(DensityUtil.dip2px(getActivity(),getResources().getDimension(R.dimen.dimen_dp10))));
+                recycleview.addItemDecoration(new VerticalSpaceItemDecoration(DensityUtil.dip2px(getActivity(),getResources().getDimension(R.dimen.dimen_dp1))));
                 ArticleRecycleViewAdapter adapter = new ArticleRecycleViewAdapter(getActivity(),R.layout.fragment_article_rv_item, articleListResult.getArticleList());
                 recycleview.setAdapter(adapter);
             }

@@ -23,9 +23,10 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            fresco:actualImageScaleType="fitCenter"
+            fresco:actualImageScaleType="centerInside"
             fresco:placeholderImage="@mipmap/head_img_f"
-            fresco:placeholderImageScaleType="centerCrop"
+            android:scaleType="centerInside"
+            fresco:placeholderImageScaleType="centerInside"
             fresco:roundAsCircle="true"
             />
 
@@ -73,9 +74,9 @@
         android:layout_height="270dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        fresco:actualImageScaleType="fitCenter"
+        fresco:actualImageScaleType="centerInside"
         fresco:placeholderImage="@mipmap/splash"
-        fresco:placeholderImageScaleType="centerCrop"
+        fresco:placeholderImageScaleType="centerInside"
         />
 
     <LinearLayout

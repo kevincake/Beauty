@@ -13,6 +13,6 @@ import rx.Observable;
  * @todo:
  */
 public interface ArticleService{
-        @GET("/article/getPopularArticle")
+        @GET("article/getPopularArticle")
         Observable<HttpResult<ArticleListResult>> getPopularArticleList(@Query(HttpConstants.PAGEINDEX)int pageIndex);
 }

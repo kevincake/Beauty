@@ -10,11 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+import cn.ifreedomer.beauty.R;
+import cn.ifreedomer.beauty.progress.ProgressCancelListener;
+import cn.ifreedomer.beauty.progress.ProgressDialogHandler;
 import cn.ifreedomer.beauty.util.ToastUtil;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements ProgressCancelListener{
 
     public Toolbar mActionBarToolbar;
+    private ProgressDialogHandler progressDialogHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
-
+        progressDialogHandler = new ProgressDialogHandler(this,this,true);
     }
 
     @Override
@@ -45,13 +49,21 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected Toolbar getActionBarToolbar() {
-//        if (mActionBarToolbar == null) {
-//            mActionBarToolbar = (Toolbar) findViewById(R.id.phone_toolbar);
-//            if (mActionBarToolbar != null) {
-//                setSupportActionBar(mActionBarToolbar);
-//                mActionBarToolbar.setTitleTextColor(R.color.WHITE);
-//            }
-//        }
+        if (mActionBarToolbar == null) {
+            mActionBarToolbar = (Toolbar) findViewById(R.id.phone_toolbar);
+            if (mActionBarToolbar != null) {
+                setSupportActionBar(mActionBarToolbar);
+                mActionBarToolbar.setNavigationIcon(R.mipmap.back);
+                mActionBarToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        onBackPressed();
+                    }
+                });
+                mActionBarToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+            }
+        }
 
         return mActionBarToolbar;
     }
@@ -90,6 +102,8 @@ public class BaseActivity extends AppCompatActivity {
         ActivityStackManager.getScreenManager().popActivity(this);
     }
 
+
+
     /**
      * 退出所有activity栈
      */
@@ -104,10 +118,30 @@ public class BaseActivity extends AppCompatActivity {
         finishAll();
 //		System.exit(0);
     }
+
+    public  void showLoading(){
+        progressDialogHandler.showProgressDialog();
+    };
+
+
+    public  void showLoading(String title){
+        progressDialogHandler.showProgressDialog(title);
+    };
+
+    public void dissmissLoading(){
+        progressDialogHandler.dismissProgressDialog();
+    }
+
+
     /**
      *
      */
-    public  void showErrorMsg(String errorMsg){
-        ToastUtil.showTextToast(this,errorMsg);
+    public void showErrorMsg(String errorMsg) {
+        ToastUtil.showTextToast(this, errorMsg);
+    }
+
+    @Override
+    public void onCancelProgress() {
+
     }
 }

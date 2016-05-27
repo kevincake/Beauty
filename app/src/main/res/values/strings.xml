@@ -101,6 +101,19 @@
     <string name="input_phone_num">请输入手机号</string>
     <string name="account">账号</string>
     <string name="password_signin">密码</string>
+    <string name="send">发布</string>
+    <string name="say_something">说点什么吧</string>
+    <string name="longclick_delete">长按添加的图片可将其删除</string>
+    <string name="addphoto">添加图片</string>
+    <string name="upload_pic">正在上传照片...</string>
+    <string name="no_content">您还没有内容哦</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="tips_title">提示</string>
+    <string name="ignore_content_quit">您有内容没有发布，确定要退出吗?</string>
+    <string name="no_pic_preview">没有照片可以浏览哦</string>
+    <string name="deploy_coment">发动态咯</string>
+    <string name="deploy_article">发小贴士</string>
 </resources>
 
 
