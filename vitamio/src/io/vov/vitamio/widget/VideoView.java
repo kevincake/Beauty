@@ -90,7 +90,9 @@ public class VideoView extends SurfaceView implements MediaController.MediaPlaye
       mVideoAspectRatio = mp.getVideoAspectRatio();
       if (mVideoWidth != 0 && mVideoHeight != 0)
         setVideoLayout(mVideoLayout, mAspectRatio);
+//        mMediaController.setAnchorView(VideoView.this);
     }
+
   };
   OnPreparedListener mPreparedListener = new OnPreparedListener() {
     public void onPrepared(MediaPlayer mp) {
@@ -130,6 +132,11 @@ public class VideoView extends SurfaceView implements MediaController.MediaPlaye
       }
     }
   };
+
+   public MediaController getMediaController(){
+       return mMediaController;
+   }
+
   SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback() {
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
       mSurfaceWidth = w;
@@ -458,7 +465,7 @@ public class VideoView extends SurfaceView implements MediaController.MediaPlaye
     if (mMediaPlayer != null && mMediaController != null) {
       mMediaController.setMediaPlayer(this);
       View anchorView = this.getParent() instanceof View ? (View) this.getParent() : this;
-      mMediaController.setAnchorView(anchorView);
+      mMediaController.setAnchorView(this);
       mMediaController.setEnabled(isInPlaybackState());
 
       if (mUri != null) {

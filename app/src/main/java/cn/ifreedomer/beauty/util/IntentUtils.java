@@ -1,6 +1,7 @@
 package cn.ifreedomer.beauty.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import cn.ifreedomer.beauty.activity.PhotoPreviewActivity;
 import cn.ifreedomer.beauty.activity.VideoPlayerActivity;
 import cn.ifreedomer.beauty.activity.personcenter.EditProfileActivity;
 import cn.ifreedomer.beauty.activity.personcenter.SettingActivity;
+import cn.ifreedomer.beauty.activity.shop.GoodsListActivity;
 import cn.ifreedomer.beauty.activity.sign.SignInActivity;
 import cn.ifreedomer.beauty.activity.sign.SignSelectActivity;
 import cn.ifreedomer.beauty.activity.sign.SignUpActivity;
@@ -129,10 +131,10 @@ public class IntentUtils {
         ctx.startActivity(intent);
     }
 
-    public static void startPreviewActivity(Activity ctx, String url,int type) {
+    public static void startPreviewActivity(Activity ctx, String url, int type) {
         Intent intent = new Intent(ctx, PhotoPreviewActivity.class);
         intent.putExtra(IntentConstants.BITMAP_URL, url);
-        intent.putExtra(IntentConstants.URI_TYPE,type);
+        intent.putExtra(IntentConstants.URI_TYPE, type);
         ctx.startActivity(intent);
     }
 
@@ -144,6 +146,10 @@ public class IntentUtils {
     public static void startDeployCourseActivity(Activity ctx) {
         Intent intent = new Intent(ctx, DeployCourseActivity.class);
         ctx.startActivity(intent);
+    }
+
+    public static void startGoodListActivity(Context context) {
+        context.startActivity(new Intent(context, GoodsListActivity.class));
     }
 //
 //    public static Bundle getSocialBundler(int type){

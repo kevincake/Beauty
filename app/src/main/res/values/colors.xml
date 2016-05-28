@@ -13,6 +13,8 @@
     <color name="hintColor">#ff929292</color>
     <color name="yellow">#f5a623</color>
     <color name="popMenuBgColor">#212223</color>
+    <color name="cardBlackBgColor">#212223</color>
+    <color name="cardWhiteBgColor">#F9F9F9</color>
     <color name="whiteBgColor">#F9F9F9</color>
     <color name="white_pressed">#f1f1f1</color>
     <color name="black">#ff000000</color>

@@ -31,7 +31,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -42,7 +41,6 @@ import android.widget.TextView;
 
 import java.lang.reflect.Method;
 
-import io.vov.vitamio.R;
 import io.vov.vitamio.utils.Log;
 import io.vov.vitamio.utils.StringUtils;
 
@@ -75,7 +73,7 @@ import io.vov.vitamio.utils.StringUtils;
  * Functions like show() and hide() have no effect when MediaController is
  * created in an xml layout.
  */
-public class MediaController extends FrameLayout {
+public class CustomMediaController extends FrameLayout {
     private static final int sDefaultTimeout = 3000;
     private static final int FADE_OUT = 1;
     private static final int SHOW_PROGRESS = 2;
@@ -167,14 +165,14 @@ public class MediaController extends FrameLayout {
         }
     };
 
-    public MediaController(Context context, AttributeSet attrs) {
+    public CustomMediaController(Context context, AttributeSet attrs) {
         super(context, attrs);
         mRoot = this;
         mFromXml = true;
         initController(context);
     }
 
-    public MediaController(Context context) {
+    public CustomMediaController(Context context) {
         super(context);
         if (!mFromXml && initController(context))
             initFloatingWindow();
@@ -200,18 +198,18 @@ public class MediaController extends FrameLayout {
         mAnimStyle = android.R.style.Animation;
     }
 
-//  @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-//	public void setWindowLayoutType() {
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//			try {
-//				mAnchor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-//				Method setWindowLayoutType = PopupWindow.class.getMethod("setWindowLayoutType", new Class[] { int.class });
-//				setWindowLayoutType.invoke(mWindow, WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
-//			} catch (Exception e) {
-//				Log.e("setWindowLayoutType", e);
-//			}
-//		}
-//	}
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setWindowLayoutType() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            try {
+                mAnchor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+                Method setWindowLayoutType = PopupWindow.class.getMethod("setWindowLayoutType", new Class[] { int.class });
+                setWindowLayoutType.invoke(mWindow, WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
+            } catch (Exception e) {
+                Log.e("setWindowLayoutType", e);
+            }
+        }
+    }
 
     /**
      * Set the view that acts as the anchor for the control view. This can for
@@ -229,7 +227,6 @@ public class MediaController extends FrameLayout {
             mWindow.setHeight(LayoutParams.WRAP_CONTENT);
         }
         initControllerView(mRoot);
-//        updatePos();
     }
 
     /**
@@ -339,16 +336,12 @@ public class MediaController extends FrameLayout {
             } else {
                 int[] location = new int[2];
 
-                ViewGroup.LayoutParams layoutParams = mAnchor.getLayoutParams();
-//                mAnchor.getLocationOnScreen(location);
-//                Rect anchorRect = new Rect(location[0], location[1], location[0] + mAnchor.getWidth(), location[1] + mAnchor.getHeight());
+                mAnchor.getLocationOnScreen(location);
+                Rect anchorRect = new Rect(location[0], location[1], location[0] + mAnchor.getWidth(), location[1] + mAnchor.getHeight());
 
                 mWindow.setAnimationStyle(mAnimStyle);
-//        setWindowLayoutType();
-
-                mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, layoutParams.width, layoutParams.height+(int)getResources().getDimension(R.dimen.dp50)/2);
-//                mWindow.showAtLocation(mAnchor, Gravity.BOTTOM, 0, 0);
-
+                setWindowLayoutType();
+                mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, anchorRect.left, anchorRect.bottom);
             }
             mShowing = true;
             if (mShownListener != null)
@@ -362,7 +355,6 @@ public class MediaController extends FrameLayout {
             mHandler.sendMessageDelayed(mHandler.obtainMessage(FADE_OUT), timeout);
         }
     }
-
 
     public boolean isShowing() {
         return mShowing;
@@ -456,17 +448,6 @@ public class MediaController extends FrameLayout {
         }
         return super.dispatchKeyEvent(event);
     }
-
-    public void updatePos() {
-        int[] location = new int[2];
-        mAnchor.getLocationOnScreen(location);
-        Rect anchorRect = new Rect(location[0], location[1], location[0] + mAnchor.getWidth(), location[1] + mAnchor.getHeight());
-
-        mWindow.setAnimationStyle(mAnimStyle);
-//        setWindowLayoutType();
-        mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, anchorRect.left, anchorRect.bottom - mRoot.getHeight());
-    }
-
 
     private void updatePausePlay() {
         if (mRoot == null || mPauseButton == null)

@@ -147,7 +147,8 @@ public class MainActivity extends BaseActivity {
                 IntentUtils.startDeployCommentActivity(this);
                 break;
             case R.id.deploy_article_fb:
-                IntentUtils.startDeployCourseActivity(this);
+                IntentUtils.startGoodListActivity(this);
+//                IntentUtils.startDeployCourseActivity(this);
                 break;
         }
     }

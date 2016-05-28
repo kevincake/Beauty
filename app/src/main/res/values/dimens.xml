@@ -11,4 +11,12 @@
     <dimen name="dimen_dp10">10dp</dimen>
     <dimen name="dimen_sp10">15dp</dimen>
     <dimen name="dimen_dp1">1dp</dimen>
+    <dimen name="dimen_dp2">2dp</dimen>
+    <dimen name="dimen_dp79">70dp</dimen>
+    <dimen name="dimen_dp60">60dp</dimen>
+    <dimen name="dimen_dp30">30dp</dimen>
+    <dimen name="dimen_dp50">50dp</dimen>
+    <dimen name="dimen_dp300">300dp</dimen>
+    <dimen name="dimen_dp200">200dp</dimen>
+    <dimen name="dimen_dp250">200dp</dimen>
 </resources>

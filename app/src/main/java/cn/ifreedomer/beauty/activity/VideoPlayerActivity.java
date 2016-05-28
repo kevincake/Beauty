@@ -1,12 +1,11 @@
 package cn.ifreedomer.beauty.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
+import android.view.ViewGroup;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,27 +13,40 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.ifreedomer.beauty.R;
+import cn.ifreedomer.beauty.activity.base.BaseActivity;
 import cn.ifreedomer.beauty.constants.Constants;
+import cn.ifreedomer.beauty.util.IntentUtils;
+import cn.ifreedomer.beauty.util.WindowUtil;
 import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
-public class VideoPlayerActivity extends AppCompatActivity {
+public class VideoPlayerActivity extends BaseActivity implements MediaPlayer.OnCompletionListener {
     private static final int NET_VIDEO_TYPE = 1;
     private static final int LOCAL_VIDEO_TYPE = 2;
+    @Bind(R.id.video_view)
+    VideoView mVideoView;
     private String path;
-    private VideoView mVideoView;
-    private EditText mEditText;
+    private boolean isShowing = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!LibsChecker.checkVitamioLibs(this))
             return;
         setContentView(R.layout.activity_video_player);
+        ButterKnife.bind(this);
 
-        mVideoView = (VideoView) findViewById(R.id.video_view);
+//        mVideoView = (VideoView) findViewById(R.id.video_view);
+        mVideoView.setOnCompletionListener(this);
+        ViewGroup.LayoutParams layoutParams = mVideoView.getLayoutParams();
+        layoutParams.height = (int) getResources().getDimension(R.dimen.dimen_dp250);
+
+//        mediacontroller.setMediaPlayer(mVideoView);
         Intent urlIntent = getIntent();
         String url = urlIntent.getStringExtra(Constants.VIDEO_URL);
         int type = getUrlType(url);
@@ -48,7 +60,50 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         }
 
-}
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putLong("progress", mVideoView.getCurrentPosition());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mVideoView.seekTo(savedInstanceState.getLong("progress"));
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        ViewGroup.LayoutParams layoutParams = mVideoView.getLayoutParams();
+        isShowing = mVideoView.getMediaController().isShowing();
+//        mVideoView.getMediaController().setVisibility(View.GONE);
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            layoutParams.height = WindowUtil.getWindowSize(this).y;
+            layoutParams.width = WindowUtil.getWindowSize(this).x;
+//            setContentView(R.layout.activity_video_player);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            layoutParams.height = (int) getResources().getDimension(R.dimen.dimen_dp250);
+            layoutParams.width = WindowUtil.getWindowSize(this).x;
+
+//            setContentView(R.layout.activity_video_player);
+        }
+        mVideoView.setTag(layoutParams);
+        mVideoView.setMediaController(new MediaController(this));
+        if (isShowing) {
+            mVideoView.getMediaController().show();
+        }
+//        int[] location = new int[2];
+//        mVideoView.getLocationOnScreen(location);
+//        LogUtil.error("size","height="+location[1]+"===width="+location[1]);
+//        mVideoView.getMediaController().setIs
+//        mVideoView.getMediaController().updatePos();
+
+    }
 
     public int getUrlType(String url) {
         if (url == null) {
@@ -62,11 +117,11 @@ public class VideoPlayerActivity extends AppCompatActivity {
     }
 
     public void startPlay(View view) {
-        String url = mEditText.getText().toString();
-        path = url;
-        if (!TextUtils.isEmpty(url)) {
-            mVideoView.setVideoPath(url);
-        }
+//        String url = mEditText.getText().toString();
+//        path = url;
+//        if (!TextUtils.isEmpty(url)) {
+//            mVideoView.setVideoPath(url);
+//        }
     }
 
     private void inputStream2File(InputStream ins, File file) {
@@ -121,4 +176,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
         mVideoView.setVideoPath(path);
     }
 
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        IntentUtils.startGoodListActivity(this);
+    }
 }
