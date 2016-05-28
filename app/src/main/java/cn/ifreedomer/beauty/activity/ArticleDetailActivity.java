@@ -8,11 +8,9 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import java.util.List;
+import com.zzhoujay.richtext.RichText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,7 +21,6 @@ import cn.ifreedomer.beauty.entity.Article;
 import cn.ifreedomer.beauty.entity.User;
 import cn.ifreedomer.beauty.entity.jsonbean.ArticleCommon;
 import cn.ifreedomer.beauty.util.ImageUtil;
-import zhou.widget.RichText;
 
 public class ArticleDetailActivity extends BaseActivity {
 
@@ -33,8 +30,8 @@ public class ArticleDetailActivity extends BaseActivity {
     TextView nameTv;
     @Bind(R.id.tag_tv)
     TextView tagTv;
-    @Bind(R.id.html_tv)
-    RichText htmlTv;
+    @Bind(R.id.text)
+    TextView htmlTv;
     @Bind(R.id.title_tv)
     TextView titleTv;
 
@@ -57,35 +54,30 @@ public class ArticleDetailActivity extends BaseActivity {
         titleTv.setText(article.getTitle());
 
 
-        htmlTv.setOnImageClickListener(new RichText.OnImageClickListener() {
-            @Override
-            public void imageClicked(List<String> imageUrls, int position) {
-                Toast.makeText(getApplicationContext(), imageUrls.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        htmlTv.setOnURLClickListener(new RichText.OnURLClickListener() {
-            @Override
-            public boolean urlClicked(String url) {
-                Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-
-        htmlTv.setImageFixListener(new RichText.ImageFixListener() {
-            @Override
-            public void onFix(RichText.ImageHolder holder) {
-                if (holder.getWidth() > 10 || holder.getHeight() > 10) {
-                    int width = getScreenWidth(getApplicationContext());
-                    int height = width;
-                    holder.setWidth(width);
-                    holder.setHeight(height);
-                    holder.setScaleType(RichText.ImageHolder.CENTER_INSIDE);
-                }
-            }
-        });
-
-        htmlTv.setRichText(article.getContent());
+        RichText.from(article.getContent()).autoFix(true).into(htmlTv);
+//
+//        htmlTv.setOnURLClickListener(new RichText.OnURLClickListener() {
+//            @Override
+//            public boolean urlClicked(String url) {
+//                Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
+//                return true;
+//            }
+//        });
+//
+//        htmlTv.setImageFixListener(new RichText.ImageFixListener() {
+//            @Override
+//            public void onFix(RichText.ImageHolder holder) {
+//                if (holder.getWidth() > 10 || holder.getHeight() > 10) {
+//                    int width = getScreenWidth(getApplicationContext());
+//                    int height = width;
+//                    holder.setWidth(width);
+//                    holder.setHeight(height);
+//                    holder.setScaleType(RichText.ImageHolder.CENTER_INSIDE);
+//                }
+//            }
+//        });
+//
+//        htmlTv.setRichText(article.getContent());
 
     }
 

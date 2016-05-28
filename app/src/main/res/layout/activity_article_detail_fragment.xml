@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
 
@@ -83,9 +84,20 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-        <zhou.widget.RichText
-            android:id="@+id/html_tv"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:zhou_default_height="50dp"
+                app:zhou_default_width="50dp"
+                app:zhou_errorImage="@mipmap/ic_launcher"
+                app:zhou_placeHolder="@mipmap/ic_launcher" />
+
+        </ScrollView>
     </LinearLayout>
 </ScrollView>
