@@ -1,6 +1,7 @@
 package cn.ifreedomer.beauty.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
-public class VideoPlayerActivity extends BaseActivity implements MediaPlayer.OnCompletionListener {
+public class VideoPlayerActivity extends BaseActivity implements MediaPlayer.OnCompletionListener, MediaController.OnScreenOrientationListener {
     private static final int NET_VIDEO_TYPE = 1;
     private static final int LOCAL_VIDEO_TYPE = 2;
     @Bind(R.id.video_view)
@@ -75,6 +76,12 @@ public class VideoPlayerActivity extends BaseActivity implements MediaPlayer.OnC
         mVideoView.seekTo(savedInstanceState.getLong("progress"));
     }
 
+
+    public void changeOrientation() {
+
+
+    }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -93,7 +100,11 @@ public class VideoPlayerActivity extends BaseActivity implements MediaPlayer.OnC
 //            setContentView(R.layout.activity_video_player);
         }
         mVideoView.setTag(layoutParams);
-        mVideoView.setMediaController(new MediaController(this));
+        MediaController mediaController = new MediaController(this);
+        mediaController.setOnScreenOrientationListener(this);
+        mVideoView.setMediaController(mediaController);
+        mediaController.setScreenIcon(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE);
+//        ContextUtils.setIsFullScreen(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE);
         if (isShowing) {
             mVideoView.getMediaController().show();
         }
@@ -146,7 +157,9 @@ public class VideoPlayerActivity extends BaseActivity implements MediaPlayer.OnC
 
     public void openVideoFromUrl(String url) {
         mVideoView.setVideoURI(Uri.parse(url));
-        mVideoView.setMediaController(new MediaController(this));
+        MediaController mediaController = new MediaController(this);
+        mediaController.setOnScreenOrientationListener(this);
+        mVideoView.setMediaController(mediaController);
         mVideoView.requestFocus();
 
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -179,5 +192,22 @@ public class VideoPlayerActivity extends BaseActivity implements MediaPlayer.OnC
     @Override
     public void onCompletion(MediaPlayer mp) {
         IntentUtils.startGoodListActivity(this);
+    }
+
+    @Override
+    public void onOrientation(int orientation) {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//            mVideoView.getLayoutParams().height = WindowUtil.getWindowSize(this).x;
+//            mVideoView.getLayoutParams().width = WindowUtil.getWindowSize(this).y;
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//            mVideoView.getLayoutParams().height = (int) getResources().getDimension(R.dimen.dimen_dp250);
+//            mVideoView.getLayoutParams().width = WindowUtil.getWindowSize(this).x;
+        }
+//        MediaController mediaController = new MediaController(this);
+//        mediaController.setOnScreenOrientationListener(this);
+//        mVideoView.setMediaController(mediaController);
+//        mVideoView.getMediaController().show();
     }
 }

@@ -48,8 +48,8 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-//    public static final String BASE_URL = "http://115.28.38.189:8080/Beauty/";
-public static final String BASE_URL = "http://192.168.1.107:8080/";
+    public static final String BASE_URL = "http://115.28.38.189:8080/Beauty/";
+//public static final String BASE_URL = "http://192.168.1.107:8080/";
     private static final int DEFAULT_TIMEOUT = 5;
 
     private Retrofit retrofit;

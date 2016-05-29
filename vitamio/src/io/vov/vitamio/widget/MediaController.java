@@ -20,7 +20,9 @@ package io.vov.vitamio.widget;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
@@ -35,6 +37,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -43,6 +46,7 @@ import android.widget.TextView;
 import java.lang.reflect.Method;
 
 import io.vov.vitamio.R;
+import io.vov.vitamio.utils.ContextUtils;
 import io.vov.vitamio.utils.Log;
 import io.vov.vitamio.utils.StringUtils;
 
@@ -99,6 +103,7 @@ public class MediaController extends FrameLayout {
     private AudioManager mAM;
     private OnShownListener mShownListener;
     private OnHiddenListener mHiddenListener;
+    private OnScreenOrientationListener onScreenOrientationListener;
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @Override
@@ -119,12 +124,33 @@ public class MediaController extends FrameLayout {
             }
         }
     };
+
+
     private View.OnClickListener mPauseListener = new View.OnClickListener() {
         public void onClick(View v) {
             doPauseResume();
             show(sDefaultTimeout);
         }
     };
+
+    private View.OnClickListener mScreenOrientationListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            boolean mIsFulleScreen = ContextUtils.getIsFullScreen();
+            mIsFulleScreen = !mIsFulleScreen;
+            if (onScreenOrientationListener != null) {
+
+                int orientation = mIsFulleScreen ?
+                        Configuration.ORIENTATION_LANDSCAPE :
+                        Configuration.ORIENTATION_PORTRAIT;
+
+                mPauseButton.setImageResource(getResources().getIdentifier("mediacontroller_pause", "drawable", mContext.getPackageName()));
+                onScreenOrientationListener.onOrientation(orientation);
+                ContextUtils.setIsFullScreen(mIsFulleScreen);
+            }
+        }
+    };
+
     private OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
         public void onStartTrackingTouch(SeekBar bar) {
             mDragging = true;
@@ -166,6 +192,7 @@ public class MediaController extends FrameLayout {
             mHandler.sendEmptyMessageDelayed(SHOW_PROGRESS, 1000);
         }
     };
+    private ImageView mChangeOrientationIv;
 
     public MediaController(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -247,6 +274,10 @@ public class MediaController extends FrameLayout {
         if (mPauseButton != null) {
             mPauseButton.requestFocus();
             mPauseButton.setOnClickListener(mPauseListener);
+        }
+        mChangeOrientationIv = (ImageView) v.findViewById(R.id.oritation_iv);
+        if (mChangeOrientationIv != null) {
+            mChangeOrientationIv.setOnClickListener(mScreenOrientationListener);
         }
 
         mProgress = (SeekBar) v.findViewById(getResources().getIdentifier("mediacontroller_seekbar", "id", mContext.getPackageName()));
@@ -346,7 +377,7 @@ public class MediaController extends FrameLayout {
                 mWindow.setAnimationStyle(mAnimStyle);
 //        setWindowLayoutType();
 
-                mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, layoutParams.width, layoutParams.height+(int)getResources().getDimension(R.dimen.dp50)/2);
+                mWindow.showAtLocation(mAnchor, Gravity.NO_GRAVITY, layoutParams.width, layoutParams.height + (int) getResources().getDimension(R.dimen.dp50) / 2);
 //                mWindow.showAtLocation(mAnchor, Gravity.BOTTOM, 0, 0);
 
             }
@@ -478,12 +509,18 @@ public class MediaController extends FrameLayout {
             mPauseButton.setImageResource(getResources().getIdentifier("mediacontroller_play", "drawable", mContext.getPackageName()));
     }
 
+
     private void doPauseResume() {
         if (mPlayer.isPlaying())
             mPlayer.pause();
         else
             mPlayer.start();
         updatePausePlay();
+    }
+
+
+    public void setOnScreenOrientationListener(OnScreenOrientationListener onScreenOrientationListener) {
+        this.onScreenOrientationListener = onScreenOrientationListener;
     }
 
     @Override
@@ -495,12 +532,22 @@ public class MediaController extends FrameLayout {
         super.setEnabled(enabled);
     }
 
+    public void setScreenIcon(boolean b) {
+        int resid = !b ? getResources().getIdentifier("icon_full_screen", "drawable", mContext.getPackageName()) : getResources().getIdentifier("icon_full_screen_exit", "drawable", mContext.getPackageName());
+//                Drawable drawable = mIsFulleScreen ? getResources().getDrawable(R.drawable.icon_full_screen) : getResources().getDrawable(R.drawable.icon_full_screen_exit);
+        mChangeOrientationIv.setImageDrawable(getResources().getDrawable(resid));
+    }
+
     public interface OnShownListener {
         public void onShown();
     }
 
     public interface OnHiddenListener {
         public void onHidden();
+    }
+
+    public interface OnScreenOrientationListener {
+        void onOrientation(int orientation);
     }
 
     public interface MediaPlayerControl {

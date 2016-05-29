@@ -19,6 +19,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 
 public class ContextUtils {
+    private static Boolean isFullScreen = false;
+
 	public static int getVersionCode(Context ctx) {
 		int version = 0;
 		try {
@@ -43,4 +45,14 @@ public class ContextUtils {
 			res = res.substring(0, res.length() - 1);
 		return res;
 	}
+
+    public static boolean getIsFullScreen(){
+            return isFullScreen;
+    }
+    public static void setIsFullScreen(boolean isFullScreenParam){
+        isFullScreen = isFullScreenParam;
+    }
+
+
+
 }
